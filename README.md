@@ -1,6 +1,15 @@
-# Scriptler
+# Scriptler <!-- omit in toc -->
 
 Diller ile yazdığım scriptler.
+
+## İçerikler <!-- omit in toc -->
+
+- [Bash Script](#bash-script)
+- [Javascript](#javascript)
+- [Php](#php)
+- [Python](#python)
+- [cli_downloader](#clidownloader)
+- [Lisans ve Teferruatlar](#lisans-ve-teferruatlar)
 
 <!-- Index -->
 
