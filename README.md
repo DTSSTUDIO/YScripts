@@ -5,10 +5,10 @@ Diller ile yazdığım scriptler.
 ## İçerikler <!-- omit in toc -->
 
 - [Bash Script](#bash-script)
+- [Batch Script](#batch-script)
 - [Javascript](#javascript)
 - [Php](#php)
 - [Python](#python)
-- [cli_downloader](#clidownloader)
 - [Lisans ve Teferruatlar](#lisans-ve-teferruatlar)
 
 <!-- Index -->
@@ -19,6 +19,10 @@ Diller ile yazdığım scriptler.
 - [git_push](Bash%20Script/git_push.sh)
 - [git_reinit](Bash%20Script/git_reinit.sh)
 - [git_remove](Bash%20Script/git_remove.sh)
+
+## Batch Script
+
+- [cli_downloader](Batch%20Script/cli_downloader)
 
 ## Javascript
 
@@ -37,12 +41,6 @@ Diller ile yazdığım scriptler.
 - [Dictionary](Python/Dictionary)
 - [MouseHandler](Python/MouseHandler)
 - [Selenium](Python/Selenium)
-
-## cli_downloader
-
-- [inputs](cli_downloader/inputs.txt)
-- [install](cli_downloader/install.bat)
-- [utils](cli_downloader/utils)
 
 <!-- Index -->
 
