@@ -69,6 +69,22 @@ then
     sudo apt --purge remove -y firefox*
 fi
 
+read -p "Office uygulamlarını kurmak ister misin? (onlyofficedesktop) [y/n]"
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    # OnlyOfficeDesktop paketinin indirilmesi
+    wget -O onlyofficedesktop.deb https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
+
+    # Paketin yüklenmesi
+    sudo dpkg -i onlyofficedesktop.deb
+
+    # Yükleme sırasında hata olursa gereksinimleri kurma
+    sudo apt install -f
+
+    # Tekrar ndeneme
+    sudo dpkg -i onlyofficedesktop.deb
+fi
+
 read -p "Dünyanın en sık kullanılan text editörü olan VsCode'u kurmak ister misin? [y/n] " # -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
