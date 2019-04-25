@@ -18,12 +18,11 @@ then
     sudo apt install -y unrar fonts-noto-color-emoji gnome-tweaks flameshot
 fi
 
-read -p "Sudo ile 'alias' desteğini aktif etmek ister misin? [y/n]"
+read -p "Medya oynatıcısı kurmak ister misin? (vlc) [y/n] " # -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    echo "# Sudo ile yeni komutların kullanılmasını sağlar" >> ~/.bashrc
-    echo "# https://askubuntu.com/a/22043/898692" >> ~/.bashrc
-    echo "alias sudo='sudo '" >> ~/.bashrc
+    # Medya oynatıcısı kurulumu
+    sudo apt install vlc
 fi
 
 read -p "System bakım aracı kurmak ister misin [y/n] " # -n 1 -r
@@ -47,9 +46,10 @@ then
     read -p "Gnome eklentilerinin chrome üzerinden yönetimini aktif etmek ister misin [y/n] " # -n 1 -r
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-         # Gnome Ektensions
-         sudo apt install -y chrome-gnome-shell
-         google-chrome https://extensions.gnome.org/extension/1160/dash-to-panel/ https://extensions.gnome.org/extension/750/openweather/ https://extensions.gnome.org/extension/1162/emoji-selector/
+        # Gnome Ektensions
+        sudo apt install -y chrome-gnome-shell
+        sudo apt-get install gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0
+        google-chrome https://extensions.gnome.org/extension/1160/dash-to-panel/ https://extensions.gnome.org/extension/750/openweather/ https://extensions.gnome.org/extension/1162/emoji-selector/ https://extensions.gnome.org/extension/779/clipboard-indicator/ https://extensions.gnome.org/extension/690/easyscreencast/
     fi
 fi
 
@@ -107,6 +107,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]
 then
     sudo apt install -y python3-pip
     pip3 install pylint autopep8
+fi
+
+read -p "Sudo ile 'alias' desteğini aktif etmek ister misin? [y/n]"
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    echo "# Sudo ile yeni komutların kullanılmasını sağlar" >> ~/.bashrc
+    echo "# https://askubuntu.com/a/22043/898692" >> ~/.bashrc
+    echo "alias sudo='sudo '" >> ~/.bashrc
 fi
 
 read -p "Miniconda3 kurmak ister misin [y/n] " # -n 1 -r
