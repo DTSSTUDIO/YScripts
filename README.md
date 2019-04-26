@@ -19,6 +19,7 @@ Diller ile yazdığım scriptler.
 - [git_push](Bash%20Script/git_push.sh)
 - [git_reinit](Bash%20Script/git_reinit.sh)
 - [git_remove](Bash%20Script/git_remove.sh)
+- [restore_local_folder](Bash%20Script/restore_local_folder.sh)
 
 ## Batch Script
 
@@ -39,6 +40,7 @@ Diller ile yazdığım scriptler.
 ## Python
 
 - [Dictionary](Python/Dictionary)
+- [Markdown](Python/Markdown)
 - [MouseHandler](Python/MouseHandler)
 - [Selenium](Python/Selenium)
 
