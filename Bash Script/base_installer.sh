@@ -56,17 +56,17 @@ fi
 read -p "Firefox'u kaldırmak ister misin? [y/n] " # -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
-    sudo dpkg -i  mailspring-1.6.1-amd64.deb
-    sudo apt install --fix-broken
-    sudo dpkg -i  mailspring-1.6.1-amd64.deb
-    rm mailspring.deb
+    sudo apt --purge remove -y firefox*
 fi
 
 read -p "Mail yönetim uygulaması kurmak ister misin? (mailspring) [y/n] " # -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    sudo apt --purge remove -y firefox*
+    wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
+    sudo dpkg -i  mailspring.deb
+    sudo apt install --fix-broken
+    sudo dpkg -i  mailspring.deb
+    rm mailspring.deb
 fi
 
 read -p "Office uygulamlarını kurmak ister misin? (onlyofficedesktop) [y/n]"
