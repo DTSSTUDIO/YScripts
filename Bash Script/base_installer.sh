@@ -40,7 +40,18 @@ while true; do
     read -p "Medya oynatıcısı kurmak ister misin? (vlc) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt install vlc
+            sudo apt install -y vlc
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Totem medya oynatıcısını kaldırmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt remove --purge totem
             break
         };;
         [Nn]* ) break;;
