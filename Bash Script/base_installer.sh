@@ -201,6 +201,17 @@ while true; do
             read -p "Git için isminizi girin (örn: Yunus Emre) " # -n 1 -r
             git config --global user.name "$REPLY"
 
+            while true; do 
+                read -p "Git kimlik bilgileri saklansın mı? (her defasında yazmayı engeller) [y/n] " # -n 1 -r
+                case $REPLY in 
+                    [Yy]* ) {
+                        git config --global credential.helper store
+                        break
+                    };;
+                    [Nn]* ) break;;
+                esac
+            done
+
             break
         };;
         [Nn]* ) break;;
