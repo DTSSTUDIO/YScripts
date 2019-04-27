@@ -5,11 +5,25 @@ echo '---------------------------------------------------------'
 echo "Temel uygulamaların Kurulumu ~ Yunus Emre Ak"
 echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
 echo '---------------------------------------------------------'
-echo "Önerilen Uygulamalar: VLC ve zenkit (github to-do kısmı gibi)"
-echo '---------------------------------------------------------'
 
 # Temp dizinine kurulum yapma, hata durumunda silinir.
 cd /tmp
+
+while true; do 
+    read -p "Gömülü oyunları ve reklamları kaldırmak ister misin [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* )  {
+            sudo apt remove -y --purge aisleriot* gnome-mahjongg gnome-mines 
+            
+            sudo rm /usr/share/applications/ubuntu-amazon-default.desktop
+			sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/Amazon.user.js
+			sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/manifest.json
+            
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
 
 while true; do 
     read -p "Temel gereksinimleri kurmak ister misin (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
@@ -60,7 +74,7 @@ while true; do
                     [Yy]* ) {
                         # Gnome Ektensions
                         sudo apt install -y chrome-gnome-shell
-                        sudo apt-get install gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0
+                        sudo apt install -y gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0
                         google-chrome https://extensions.gnome.org/extension/1160/dash-to-panel/ https://extensions.gnome.org/extension/750/openweather/ https://extensions.gnome.org/extension/1162/emoji-selector/ https://extensions.gnome.org/extension/779/clipboard-indicator/ https://extensions.gnome.org/extension/690/easyscreencast/
 
                         break
@@ -92,7 +106,7 @@ while true; do
         [Yy]* ) {
             wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
             sudo dpkg -i  mailspring.deb
-            sudo apt install --fix-broken
+            sudo apt install -y --fix-broken
             sudo dpkg -i  mailspring.deb
             rm mailspring.deb
 
@@ -101,6 +115,18 @@ while true; do
         [Nn]* ) break;;
     esac
 done
+
+while true; do 
+    read -p "Thunderbird'i kaldırmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt --purge remove -y *thunderbird*
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
 
 while true; do 
     read -p "Office uygulamlarını kurmak ister misin? (onlyofficedesktop) [y/n] " # -n 1 -r
@@ -113,7 +139,7 @@ while true; do
             sudo dpkg -i onlyofficedesktop.deb
 
             # Yükleme sırasında hata olursa gereksinimleri kurma
-            sudo apt install -f
+            sudo apt install -yf
 
             # Tekrar ndeneme
             sudo dpkg -i onlyofficedesktop.deb
@@ -124,8 +150,20 @@ while true; do
     esac
 done
 
+while true; do
+	read -p "Libreoffice'i kaldırmak ister misin? [y/n] "
+	case $REPLY in 
+        [Yy]* ) {
+           	sudo apt remove --purge libreoffice*
+
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
 while true; do 
-    read -p "Dünyanın en sık kullanılan text editörü olan VsCode'u kurmak ister misin? [y/n] " # -n 1 -r
+    read -p "VsCode'u (dünyanın en sık kullanılan text editörünü) kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             # VsCode
@@ -146,6 +184,11 @@ while true; do
             # Git ve Git-lfs Kurulumu
             sudo apt install -y git git-lfs
             git lfs install
+
+            read -p "Git e-postanızı girin (örn: yemreak@gmail.com) " # -n 1 -r
+            git config --global user.email "$REPLY"
+            read -p "Git için isminizi girin (örn: Yunus Emre) " # -n 1 -r
+            git config --global user.name "$REPLY"
 
             break
         };;
@@ -197,8 +240,10 @@ while true; do
             # echo "# Miniconda3 Komutları" >> ~/.bashrc 
             # echo alias "alias conda_init='source ~/miniconda3/bin/activate'" >> ~/.bashrc
             # echo "Tanımlanan Miniconda3 komutları: conda_init"
-
+			
+			source ~/.bashrc
             conda config --set auto_activate_base false
+            conda deactivate
             echo "Tanımlanan komutlar: conda"
             echo "Conda'yı aktif/pasif işlemleri için:  activate ve conda deactivate"
 
@@ -209,11 +254,11 @@ while true; do
 done
 
 while true; do 
-    read -p "Miniconda3 kurmak ister misin [y/n] " # -n 1 -r
+    read -p "Xammp kurmak ister misin [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             # Bağlantı araçlarını kurma
-            sudo apt install net-tools
+            sudo apt install -y net-tools
 
             # Xammp indirme
             wget -O xampp-linux-x64-7.3.4-0-installer.run https://downloadsapachefriends.global.ssl.fastly.net/7.3.4/xampp-linux-x64-7.3.4-0-installer.run?from_af=true
@@ -224,20 +269,21 @@ while true; do
             rm xampp-linux-x64-7.3.4-0-installer.run
 
             while true; do
-            read -p "Xammp komutları tanımlansın mı (xampp ve mysql) [y/n] " # -n 1 -r
-            case $REPLY in
-                [Yy]* ) {
-                    # Xammp komutlarını tanımlama
-                    echo >> ~/.bashrc
-                    echo "# Xampp Komutları" >> ~/.bashrc 
-                    echo alias xampp='/opt/lampp/xampp' >> ~/.bashrc
-                    echo alias mysql='/opt/lampp/bin/mysql' >> ~/.bashrc      
-                    echo "Tanımlanan komutlar: xampp ve mysql"
+		        read -p "Xammp komutları tanımlansın mı (xampp ve mysql) [y/n] " # -n 1 -r
+		        case $REPLY in
+		            [Yy]* ) {
+		                # Xammp komutlarını tanımlama
+		                echo >> ~/.bashrc
+		                echo "# Xampp Komutları" >> ~/.bashrc 
+		                echo alias xampp='/opt/lampp/xampp' >> ~/.bashrc
+		                echo alias mysql='/opt/lampp/bin/mysql' >> ~/.bashrc      
+		                echo "Tanımlanan komutlar: xampp ve mysql"
 
-                    break
-                };;
-                [Nn]* ) break;;
-            esac
+		                break 
+		            };;
+		            [Nn]* ) break;;
+		        esac
+            done
 
             break
         };;
@@ -262,7 +308,7 @@ while true; do
             sudo apt update
 
             # Sürüm seçimi
-            sudo apt install --install-recommends winehq-stable
+            sudo apt install -y --install-recommends winehq-stable
             # sudo apt install --install-recommends winehq-devel
             # sudo apt install --install-recommends winehq-staging
 
@@ -277,7 +323,7 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             wget -qO- https://deb.nodesource.com/setup_11.x | sudo -E bash -
-            sudo apt-get install -y nodejs
+            sudo apt install -y nodejs
 
             break
         };;
@@ -289,13 +335,13 @@ while true; do
     read -p "Postgresql kurmak ister misin [y/n]" # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt-get install postgresql
+            sudo apt install -y postgresql
 
             while true; do 
                 read -p "PostgreSQL JDBC Driver indirmek ister misin? [y/n] " # -n 1 -r
                 case $REPLY in 
                     [Yy]* ) {
-                        sudo apt-get install libpostgresql-jdbc-java libpostgresql-jdbc-java-doc
+                        sudo apt install -y libpostgresql-jdbc-java libpostgresql-jdbc-java-doc
 		                echo "export CLASSPATH=$CLASSPATH:/usr/share/java/postgresql-42.2.5.jar" >> ~/.bashrc
 
                         break
