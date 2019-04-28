@@ -112,7 +112,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Mail yönetim uygulaması kurmak ister misin? (mailspring) [y/n] " # -n 1 -r
+    read -p "Mail yönetim uygulaması kurmak ister misin? (mailspring, python2.7.16 ile kurulur) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
