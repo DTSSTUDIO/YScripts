@@ -1,5 +1,10 @@
 # Scriptler <!-- omit in toc -->
 
+![GitHub last commit](https://img.shields.io/github/last-commit/yedhrab/YScripts.svg?label=Son%20G%C3%BCncelleme&style=popout)
+![GitHub](https://img.shields.io/github/license/yedhrab/YScripts.svg?label=Lisans&style=popout)
+![made_with_Markdown](https://img.shields.io/badge/%C4%B0%C3%A7erik-Markdown-blue.svg)
+![GitHub repo size](https://img.shields.io/github/repo-size/yedhrab/YScripts.svg?label=Boyut&style=popout)
+
 Diller ile yazdığım scriptler.
 
 ## İçerikler <!-- omit in toc -->
@@ -54,6 +59,6 @@ Bu yazı **MIT** lisanslıdır. Lisanslar hakkında bilgi almak için [buraya](h
 - [Website](https://yemreak.com)
 - [LinkedIn](https://www.linkedin.com/in/yemreak/)
 
-> Yardım veya destek için [iletişime](mailto::yedhrab@gmail.com?subject=Bilgiler%20%7C%20Github) geçebilrsiniz 🤗
+> Yardım veya destek için [iletişime](mailto::yedhrab@gmail.com?subject=YScripts%20%7C%20Github) geçebilrsiniz 🤗
 
 ~ Yunus Emre Ak
