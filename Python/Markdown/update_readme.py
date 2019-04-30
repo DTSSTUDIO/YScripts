@@ -12,10 +12,24 @@ from urllib.parse import quote
 # TODO Github dosyanda çalıştırdığında tüm git projelerini güncellesin
 # TODO Dosyayı CLI parametresi olarak alsın (yoksa bulunduğu dizindeki klasörleri ele alsın)
 
-############    private.cfg     ############
-# # VsCode dosyaları
-# .vscode
+############    readme.cfg     ############
+# [Config]
 #
+# # Sıralı indeksleme
+# SORTED_INDEX = True
+# # Sadece bu veriyi barındıranları indeksleme (hepsi için boş bırakın)
+# INDEX_FILTER =
+# # İndekslemeye dosya uzantısını da ekleme
+# INDEX_WITH_EXT = True
+# # Gizli dosyaları atlama
+# SKIP_PRIVATE_FOLDER = True
+#
+# [Private]
+# .git
+# res
+# images
+# .vscode
+# Windows10 Kaynakları
 #############################################
 
 # Yaplandırma dosyası
