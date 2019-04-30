@@ -11,6 +11,7 @@ Diller ile yazdığım scriptler.
 
 - [Bash Script](#bash-script)
 - [Batch Script](#batch-script)
+- [IPyton Scripts](#ipyton-scripts)
 - [Javascript](#javascript)
 - [Php](#php)
 - [Python](#python)
@@ -29,6 +30,14 @@ Diller ile yazdığım scriptler.
 ## Batch Script
 
 - [cli_downloader](Batch%20Script/cli_downloader)
+
+## IPyton Scripts
+
+- [Colab İndirici](IPyton%20Scripts/Colab%20%C4%B0ndirici.ipynb)
+- [Python Türkçe Kaynaklar](IPyton%20Scripts/Python%20T%C3%BCrk%C3%A7e%20Kaynaklar.ipynb)
+- [README](IPyton%20Scripts/README.md)
+- [Selenium Video İndirici](IPyton%20Scripts/Selenium%20Video%20%C4%B0ndirici.ipynb)
+- [Tensorlow_Obje_Algılayıcısını_Colab_Üzerinde_Eğitme](IPyton%20Scripts/Tensorlow_Obje_Alg%C4%B1lay%C4%B1c%C4%B1s%C4%B1n%C4%B1_Colab_%C3%9Czerinde_E%C4%9Fitme.ipynb)
 
 ## Javascript
 

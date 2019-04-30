@@ -1,7 +1,5 @@
 """README dosyasını yeni dosya değişikliği durumunda güncelleme
 
-Returns:
-    None -- [description]
 Author:
     Yunus Emre Ak
 """
@@ -10,16 +8,23 @@ import os
 import re
 from urllib.parse import quote
 
+# TODO Git modülü ile branch'lara özgü otomatik README oluştur
+# TODO Github dosyanda çalıştırdığında tüm git projelerini güncellesin
+# TODO Dosyayı CLI parametresi olarak alsın (yoksa bulunduğu dizindeki klasörleri ele alsın)
 
 # Sıralı indeksleme
 SORTED_INDEX = True
 # Sadece bu veriyi barındıranları indeksleme (hepsi için '')
-INDEXED_FILE_EXT = ''
+INDEX_FILTER = ''
+# İndekslemeye dosya uzantısını da ekleme
+INDEX_WITH_EXT = True
 
 # Gizli dosyaları atlama
 SKIP_PRIVATE_FOLDER = True
 # Indexlenmeyecek dosya isimleri
-PRIVATE_FOLDERS = ['.git', 'images', 'pdfs', '.vscode', 'Windows10 Kaynakları']
+PRIVATE_FOLDERS = [
+    '.git', 'res', 'images', 'pdfs', '.vscode', 'Windows10 Kaynakları'
+]
 
 
 def check_dir_if_wanted(dir_name: str) -> bool:
@@ -74,9 +79,11 @@ def insert_indexes(dir_names):
             # Verileri sıralama ve işleme
             for filename in filenames:
                 # Markdown dosyası ise bağlantı oluşturma
-                if INDEXED_FILE_EXT in filename:
-                    filename, _ = os.path.splitext(filename)
-                    str += create_link(dir_name, filename + INDEXED_FILE_EXT)
+                if INDEX_FILTER in filename:
+                    filename, ext = os.path.splitext(filename)
+                    str += create_link(
+                        dir_name, filename + (ext if INDEX_WITH_EXT else '')
+                    )
 
             # Yeni alt başlık için boş satır oluşturma
             str += "\n"
