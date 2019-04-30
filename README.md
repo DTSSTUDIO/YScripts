@@ -37,7 +37,7 @@ Diller ile yazdığım scriptler.
 - [Python Türkçe Kaynaklar](IPyton%20Scripts/Python%20T%C3%BCrk%C3%A7e%20Kaynaklar.ipynb)
 - [README](IPyton%20Scripts/README.md)
 - [Selenium Video İndirici](IPyton%20Scripts/Selenium%20Video%20%C4%B0ndirici.ipynb)
-- [Tensorlow_Obje_Algılayıcısını_Colab_Üzerinde_Eğitme](IPyton%20Scripts/Tensorlow_Obje_Alg%C4%B1lay%C4%B1c%C4%B1s%C4%B1n%C4%B1_Colab_%C3%9Czerinde_E%C4%9Fitme.ipynb)
+- [Tensorlow Obje Algılayıcısını Colab Üzerinde Eğitme](IPyton%20Scripts/Tensorlow%20Obje%20Alg%C4%B1lay%C4%B1c%C4%B1s%C4%B1n%C4%B1%20Colab%20%C3%9Czerinde%20E%C4%9Fitme.ipynb)
 
 ## Javascript
 
