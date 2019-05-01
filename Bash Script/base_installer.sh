@@ -307,6 +307,29 @@ while true; do
 		        esac
             done
 
+            while true; do
+		        read -p "Wordpress kurmak ister misin [y/n] " # -n 1 -r
+		        case $REPLY in
+		            [Yy]* ) {
+                        # Wordpress indirilmesi
+                        wget -O wordpress.zip https://wordpress.org/latest.zip
+
+                        # Wordpress'i çıkartma ve taşıma
+                        unizp wordpress.zip
+                        sudo mv wordpress /opt/lampp/htdocs
+
+                        # Wordpress sayfasına yönelendirme
+                        sudo /opt/lampp/xampp start
+                        google-chrome localhost/wordpress
+
+		                echo "XAMPP'ı başlatıp 'localhost/wordpress' adresi üzerinden wordpress'e erişebilirin."
+
+		                break 
+		            };;
+		            [Nn]* ) break;;
+		        esac
+            done
+
             break
         };;
         [Nn]* ) break;;
