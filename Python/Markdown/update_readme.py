@@ -63,7 +63,11 @@ def load_cfg():
     private_section = False
 
     def remove_comments(line):
-        return line[:line.find("#")]
+        index = line.find("#")
+        if index == -1:
+            return line.strip()
+        else:
+            return line[:line.find("#")]
 
     def parse_value(line):
         try:
