@@ -319,7 +319,7 @@ while true; do
                         sudo mv wordpress /opt/lampp/htdocs
 
                         # Dosyaya okuma ve yazma erişimi verme
-                        sudo chmod -R 757 /opt/lampp/htdocs/wordpress/
+                        sudo chmod -R 777 /opt/lampp/htdocs/wordpress/
 
                         # Wordpress sayfasına yönelendirme
                         sudo /opt/lampp/xampp start
