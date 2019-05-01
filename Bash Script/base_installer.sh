@@ -318,6 +318,9 @@ while true; do
                         unizp wordpress.zip
                         sudo mv wordpress /opt/lampp/htdocs
 
+                        # Dosyaya okuma ve yazma erişimi verme
+                        sudo chmod -R 757 /opt/lampp/htdocs/wordpress/
+
                         # Wordpress sayfasına yönelendirme
                         sudo /opt/lampp/xampp start
                         google-chrome localhost/wordpress
