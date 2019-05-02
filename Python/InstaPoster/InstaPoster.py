@@ -6,8 +6,6 @@ from pynput.keyboard import Key, Controller as KController
 import time
 
 
-FILE_COUNT = 130
-
 POSITION = (359, 715)
 FILE_POSITION = (201, 121)
 POSITION_NEXT = (489, 188)
@@ -32,18 +30,23 @@ def select_file(index):
 
     keyboard.press(Key.enter)
     keyboard.release(Key.enter)
+    time.sleep(WAIT_SHORT)
 
 
 def update_config(index=0):
     with open(CONFIG_FILE, "w") as file:
-        file.write(f"START_INDEX={index}")
+        file.write(f"START_INDEX={index}\n")
+        file.write(
+            f"FINISH_INDEX={FINISH_INDEX if ('FINISH_INDEX' in globals()) else 0}\n")
 
 
-def share_post():
+def share_post(index=0):
     mouse.position = POSITION_NEXT
     mouse.click(Button.left, count=1)
     time.sleep(WAIT_SHORT)
     mouse.click(Button.left, count=1)
+    update_config(index)
+    time.sleep(WAIT_LONG)
 
 
 def start(function, param=None):
@@ -70,12 +73,14 @@ def load_config():
             return ''
 
     def read_config():
-        global START_INDEX, CONFIG_FILE
+        global START_INDEX, CONFIG_FILE, FINISH_INDEX
         with open(CONFIG_FILE, "r") as file:
             for line in file:
                 line = remove_comments(line)
                 if "START_INDEX" in line:
                     START_INDEX = int(parse_value(line))
+                if "FINISH_INDEX" in line:
+                    FINISH_INDEX = int(parse_value(line))
 
     try:
         read_config()
@@ -85,14 +90,24 @@ def load_config():
         read_config()
 
 
+def is_finished():
+    global START_INDEX, FINISH_INDEX
+    return START_INDEX >= FINISH_INDEX
+
+
 def main():
     load_config()
-    for i in range(START_INDEX, FILE_COUNT):
+
+    if is_finished():
+        print(
+            f"Başlangıç ile bitiş indeksleri aynı, dizindeki '{CONFIG_FILE}' dosyasını kontrol edin.")
+        exit()
+
+    global FINISH_INDEX
+    for i in range(START_INDEX, FINISH_INDEX):
         start(touch_plus_button)
-        start(select_file, param=i)
-        start(share_post)
-        update_config(index=i)
-        time.sleep(WAIT_LONG)
+        start(select_file, i)
+        start(share_post, i+1)
 
 
 if __name__ == "__main__":
