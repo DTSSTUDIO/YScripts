@@ -7,9 +7,10 @@ echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
 echo '---------------------------------------------------------'
 
 # Temel işlemler
-sudo apt dist-upgrade
-sudo apt update
-sudo apt autoremove
+sudo apt -y dist-upgrade
+sudo apt -y update
+sudo apt -y upgrade
+sudo apt -y autoremove
 
 # Temp dizinine kurulum yapma, hata durumunda silinir.
 cd /tmp
