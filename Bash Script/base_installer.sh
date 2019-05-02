@@ -323,7 +323,7 @@ while true; do
 
                         # Wordpress sayfasına yönelendirme
                         sudo /opt/lampp/xampp start
-                        google-chrome localhost/wordpress
+                        google-chrome localhost/phpmyadmin localhost/wordpress 
 
 		                echo "XAMPP'ı başlatıp 'localhost/wordpress' adresi üzerinden wordpress'e erişebilirin."
 
