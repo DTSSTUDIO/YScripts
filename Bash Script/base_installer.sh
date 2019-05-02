@@ -73,7 +73,7 @@ while true; do
     read -p "Kamera uygulamasını kurmak ister misin? (cheese) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt install cheese
+            sudo apt install -y cheese
             break
         };;
         [Nn]* ) break;;
@@ -322,8 +322,8 @@ while true; do
             # echo "Tanımlanan Miniconda3 komutları: conda_init"
 			
 			source ~/.bashrc
-            conda config --set auto_activate_base false
-            conda deactivate
+            $HOME/miniconda3/bin/conda config --set auto_activate_base false config --set auto_activate_base false
+            $HOME/miniconda3/bin/conda deactivate
             echo "Tanımlanan komutlar: conda"
             echo "Conda'yı aktif/pasif işlemleri için:  activate ve conda deactivate"
 
