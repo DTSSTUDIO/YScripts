@@ -37,6 +37,17 @@ while true; do
 done
 
 while true; do 
+    read -p "Paint alternatifi resim yönetim uygulamasını kurmak ister misin? (kolourpaint) [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* )  {
+            sudo apt install -y kolourpaint
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
     read -p "Medya oynatıcısı kurmak ister misin? (vlc) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
