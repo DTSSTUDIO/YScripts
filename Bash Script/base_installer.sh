@@ -6,6 +6,11 @@ echo "Temel uygulamaların Kurulumu ~ Yunus Emre Ak"
 echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
 echo '---------------------------------------------------------'
 
+# Temel işlemler
+sudo apt dist-upgrade
+sudo apt update
+sudo apt autoremove
+
 # Temp dizinine kurulum yapma, hata durumunda silinir.
 cd /tmp
 
@@ -483,3 +488,6 @@ while true; do
         [Nn]* ) break;;
     esac
 done
+
+# Artııkları temizleme
+sudo apt autoremove
