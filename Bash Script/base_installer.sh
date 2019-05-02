@@ -37,6 +37,17 @@ while true; do
 done
 
 while true; do 
+    read -p "Telegram kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y telegram-desktop
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
     read -p "Paint alternatifi resim yönetim uygulamasını kurmak ister misin? (kolourpaint) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
@@ -48,10 +59,10 @@ while true; do
 done
 
 while true; do 
-    read -p "Medya oynatıcısı kurmak ister misin? (vlc) [y/n] " # -n 1 -r
+    read -p "Resim yönetim uygulamasını kurmak ister misin? (shotwell) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt install -y vlc
+            sudo apt install -y shotwell
             break
         };;
         [Nn]* ) break;;
@@ -59,10 +70,44 @@ while true; do
 done
 
 while true; do 
-    read -p "Totem medya oynatıcısını kaldırmak ister misin? [y/n] " # -n 1 -r
+    read -p "Kamera uygulamasını kurmak ister misin? (cheese) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt remove --purge totem
+            sudo apt install cheese
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Gnoem varsayılan (Totem) medya oynatıcısını kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y totem
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "VLC Medya oynatıcısı kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y vlc
+
+            while true; do 
+                read -p "Totem medya oynatıcısını kaldırmak ister misin? [y/n] " # -n 1 -r
+                case $REPLY in 
+                    [Yy]* ) {
+                        sudo apt remove --purge totem
+                        break
+                    };;
+                    [Nn]* ) break;;
+                esac
+            done
+
             break
         };;
         [Nn]* ) break;;
@@ -105,6 +150,17 @@ while true; do
                 esac
             done
 
+            while true; do 
+                read -p "Firefox'u kaldırmak ister misin? [y/n] " # -n 1 -r
+                case $REPLY in 
+                    [Yy]* ) {
+                        sudo apt --purge remove -y firefox*
+                        break
+                    };;
+                    [Nn]* ) break;;
+                esac
+            done
+
             break
         };;
         [Nn]* ) break;;
@@ -112,25 +168,15 @@ while true; do
 done
 
 while true; do 
-    read -p "Firefox'u kaldırmak ister misin? [y/n] " # -n 1 -r
+    read -p "Mail yönetim uygulaması kurmak ister misin? (snap ile kurulur) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt --purge remove -y firefox*
-            break
-        };;
-        [Nn]* ) break;;
-    esac
-done
-
-while true; do 
-    read -p "Mail yönetim uygulaması kurmak ister misin? (mailspring, python2.7.16 ile kurulur) [y/n] " # -n 1 -r
-    case $REPLY in 
-        [Yy]* ) {
-            wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
-            sudo dpkg -i  mailspring.deb
-            sudo apt install -y --fix-broken
-            sudo dpkg -i  mailspring.deb
-            rm mailspring.deb
+            # wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
+            # sudo dpkg -i  mailspring.deb
+            # sudo apt install -y --fix-broken
+            # sudo dpkg -i  mailspring.deb
+            # rm mailspring.deb
+            sudo snap install mailspring
 
             break
         };;
@@ -166,23 +212,24 @@ while true; do
             # Tekrar ndeneme
             sudo dpkg -i onlyofficedesktop.deb
 
+            while true; do
+                read -p "Libreoffice'i kaldırmak ister misin? [y/n] "
+                case $REPLY in 
+                    [Yy]* ) {
+                        sudo apt remove --purge libreoffice*
+
+                        break
+                    };;
+                    [Nn]* ) break;;
+                esac
+            done
+
             break
         };;
         [Nn]* ) break;;
     esac
 done
 
-while true; do
-	read -p "Libreoffice'i kaldırmak ister misin? [y/n] "
-	case $REPLY in 
-        [Yy]* ) {
-           	sudo apt remove --purge libreoffice*
-
-            break
-        };;
-        [Nn]* ) break;;
-    esac
-done
 
 while true; do 
     read -p "VsCode'u (dünyanın en sık kullanılan text editörünü) kurmak ister misin? [y/n] " # -n 1 -r
@@ -280,6 +327,28 @@ while true; do
             echo "Tanımlanan komutlar: conda"
             echo "Conda'yı aktif/pasif işlemleri için:  activate ve conda deactivate"
 
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Torrent yöneticisi kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y transmission-gtk
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Usb oluşturucusu kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+           sudo apt install -y usb-creator-gtk
             break
         };;
         [Nn]* ) break;;
