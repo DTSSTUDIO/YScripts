@@ -2,7 +2,6 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/yedhrab/YScripts.svg?label=Son%20G%C3%BCncelleme&style=popout)
 ![GitHub](https://img.shields.io/github/license/yedhrab/YScripts.svg?label=Lisans&style=popout)
-![made_with_Markdown](https://img.shields.io/badge/%C4%B0%C3%A7erik-Markdown-blue.svg)
 ![GitHub repo size](https://img.shields.io/github/repo-size/yedhrab/YScripts.svg?label=Boyut&style=popout)
 
 Diller ile yazdığım scriptler.
