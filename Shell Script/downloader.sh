@@ -8,7 +8,7 @@ url_counts() {
 	while IFS= read line
 	do
 		let "i += 1"
-	done < "$file"
+	done < "../$file"
 	return $i
 }
 
@@ -21,16 +21,18 @@ dowload_with_name() {
 	done < "../$file"
 }
 
+mkdir -p images
+cd images
+
 url_counts
-if [ "$?" == "0" ]; then
+num=$?
+if [ "$num" == "0" ]; then
 	exit
 fi
 
-read -p "$? tane resim 'images' dizini oluşturulup, içine yüklenecektir. [y/n] " # -n 1 -r
+read -p "$num tane resim 'images' dizini oluşturulup, içine yüklenecektir. [y/n] " # -n 1 -r
 case $REPLY in 
 	[Yy]* ) {
-		mkdir images
-		cd images
 		dowload_with_name
 	};;
 	[Nn]* ) {
