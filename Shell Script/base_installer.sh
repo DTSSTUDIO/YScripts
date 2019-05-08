@@ -31,11 +31,11 @@ while true; do
     esac
 done
 
-while true; do 
+while true; do
     read -p "Temel gereksinimleri kurmak ister misin (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
-            sudo apt install -y unrar fonts-noto-color-emoji ttf-ancient-fonts-symbola gnome-tweaks flameshot
+            sudo apt install -y unrar fonts-noto-color-emoji gnome-tweaks flameshot
             break
         };;
         [Nn]* ) break;;
