@@ -60,7 +60,7 @@ Diller ile yazdığım scriptler.
 
 - [Colab İndirici](./IPyton%20Scripts/Colab%20%C4%B0ndirici.ipynb)
 - [Python Türkçe Kaynaklar](./IPyton%20Scripts/Python%20T%C3%BCrk%C3%A7e%20Kaynaklar.ipynb)
-- [README](./IPyton%20Scripts/README.md)
+- [README](./IPyton%20Scripts/README)
 - [Selenium Video İndirici](./IPyton%20Scripts/Selenium%20Video%20%C4%B0ndirici.ipynb)
 - [Tensorlow Obje Algılayıcısını Colab Üzerinde Eğitme](./IPyton%20Scripts/Tensorlow%20Obje%20Alg%C4%B1lay%C4%B1c%C4%B1s%C4%B1n%C4%B1%20Colab%20%C3%9Czerinde%20E%C4%9Fitme.ipynb)
 
@@ -120,7 +120,6 @@ Diller ile yazdığım scriptler.
 - [git_remove](./Shell%20Script/git_remove.sh)
 - [read_file](./Shell%20Script/read_file.sh)
 - [restore_local_folder](./Shell%20Script/restore_local_folder.sh)
-- [temp](./Shell%20Script/temp.md)
 
 <!--Index-->
 
