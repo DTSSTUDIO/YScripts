@@ -5,3 +5,5 @@ cli_downloader/downloads
 __pycache__
 .idea
 Python/Selenium/.idea
+.vscode
+temp
