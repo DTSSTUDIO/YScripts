@@ -1,56 +1,85 @@
 """Static linkleri dinamik hale getirme
 """
 
+import time
+
 FILE_PATH = r"/home/yemreak/Documents/YScripts/temp/Vscode.md"
 
-
-link_count = 0
-
-delims = ['[', ']', '(', ')']
-
+links = []
 filestr = ""
 with open(FILE_PATH, "r") as file:
-    internal_links = []
-    external_links = []
-    for l, line in enumerate(file, 1):
-        # İndeksler []()
-        indexes = [-1, -1, -1, -1]
-        for index, char in enumerate(line, 1):
-            if char == delims[0]:  # Karakter '[' ise
+    delims = ['[', ']', '(', ')']
+    for line in file:
+        # Her ayıracın konum indeksi
+        indexes = [-1 for i in range(len(delims))]
+
+        # Satırları satır indeksiyle okuma
+        index = 0
+        for char in line:
+            # Karakter '[' ise indeksini alma
+            if char == delims[0]:
                 indexes[0] = index
 
-                # Arama sürecini sıfırlama
+                # Diğer indeksleri sıfırlama
                 for i in range(1, len(indexes)):
                     indexes[i] = -1
 
-            elif indexes[0] != -1:  # '[' bulunduysa
-                if char == delims[1]:  # Karakter '[' ise
+            # "[" karakteri bulunduysa diğer karakterleri arama
+            elif indexes[0] != -1:
+                # "]" karakteri ise indeksini alma
+                if char == delims[1]:
                     indexes[1] = index
 
-                elif indexes[1] != -1:  # ']' bulunduysa
-                    # Karakter ')' ise ve ']' dan hemen sonra geliyorsa
+                # "]" karakteri alındıysa diğer karakterleri arama
+                elif indexes[1] != -1:
+                    # Karakter ')' ise ve ']' dan hemen sonra geliyorsa indeksini alma
                     if char == delims[2] and index == indexes[1] + 1:
                         indexes[2] = index
-                    elif indexes[2] != -1:  # '(' bulundusya
-                        # TODO: Boşluk varsa iptal etmeyi ekle
+
+                    # '(' bulundusya diğer karakterleri arama
+                    elif indexes[2] != -1:
+                        # Karakter ")" ise indeksini alma ve ek işlemler
                         if char == delims[3]:
                             indexes[3] = index
 
-                            # Link'i ekleme
-                            # TODO: Linkleri ayrıştır
-                            linkstr = line[indexes[2]:indexes[3] - 1]
-                            if "http" in linkstr:
-                                external_links.append(linkstr)
-                            else:
-                                internal_links.append(linkstr)
+                            # Linkleri ayrıştırma ve gerekli dizilere ekleme
+                            linkstr = line[indexes[2] + 1:indexes[3]]
+
+                            # Anchor linkleri atlama
+                            if linkstr[0] != "#":
+                                link_index = len(links)
+                                found = False
+                                for i, link in enumerate(links):
+                                    if link == linkstr:
+                                        link_index = i
+                                        found = True
+                                        break
+
+                                # Link yoksa ekleme
+                                if not found:
+                                    links.append(linkstr)
+
+                                # Parantezleri ve aradaki linki dinamikleştirme
+                                line = line.replace(
+                                    f"({linkstr})", f"[{link_index}]")
+
+                                # Satır değişikliğini indekse yansıtma
+                                index -= len(linkstr) - len(str(link_index))
 
                             # İndeksleri sıfırlama (yenisi için hazırlama)
-                            indexes = [-1, -1, -1, -1]
+                            indexes = [-1 for i in range(len(delims))]
 
-    print("Harici linkler:", len(external_links))
-    for link in external_links:
-        print(link)
+                        # Boşluk karakteri link yapısını bozduğundan yeni link için hazırlama
+                        elif char == ' ':
+                            indexes = [-1 for i in range(len(delims))]
 
-    print("Dahili linkler:", len(internal_links))
-    for link in internal_links:
-        print(link)
+            # Yeni karaktere geçmeden önce indeksi ayarlama
+            index += 1
+        filestr += line
+
+filestr += "\n"
+for i, link in enumerate(links):
+    filestr += f"\n[{i}]: {link}"
+
+with open(FILE_PATH, "w") as file:
+    file.write(filestr)
