@@ -97,7 +97,9 @@ Diller ile yazdığım scriptler.
 
 - [InstagramPoster](./Python%20Script/InstagramPoster.py)
 - [config_manager](./Python%20Script/config_manager.py)
+- [func_speed_test](./Python%20Script/func_speed_test.py)
 - [mouse_handler](./Python%20Script/mouse_handler.py)
+- [speed_tester](./Python%20Script/speed_tester.py)
 
 ### Dictionary
 
@@ -108,8 +110,9 @@ Diller ile yazdığım scriptler.
 
 ### Markdown
 
-- [readme_updater](./Python%20Script/Markdown/readme_updater.py)
+- [dinamiclink_generator](./Python%20Script/Markdown/dinamiclink_generator.py)
 - [update_markdown_formats](./Python%20Script/Markdown/update_markdown_formats.py)
+- [ymarkdown_manager](./Python%20Script/Markdown/ymarkdown_manager.py)
 
 ## Shell Script
 
