@@ -43,7 +43,7 @@ OPTIONS = {
         "Sadece bu veriyi barındıranları indeksleme (hepsi için boş bırakın)"
     ),
     "INDEX_FOR_PAGE": Option(
-        True,
+        False,
         "Github sayfası (gh-pages) için indeksleme"
     ),
     "INSERT_INDICATOR": Option(
