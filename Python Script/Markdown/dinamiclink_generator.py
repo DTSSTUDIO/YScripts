@@ -1,12 +1,93 @@
 """Static linkleri dinamik hale getirme
 """
 
-import time
+import os
 
-FILE_PATH = r"/home/yemreak/Documents/YScripts/temp/Vscode.md"
+PRIVATES = {'.git', '.vscode'}
 
 
-def replace_static_links_from_file() -> str:
+def is_private(name: str) -> bool:
+    """İsmi verilen gizli mi kontrolü
+
+    Args:
+        name (str): Dosya ismi
+
+    Returns:
+        bool: Gizli ise `True` değilse `False`
+    """
+
+    for private in PRIVATES:
+        if name == private:
+            return True
+    return False
+
+
+def listfolderpaths(path: str = os.getcwd(), sort: bool = False) -> list:
+    """Dizinleri listeleme
+
+    Args:
+        path (str, optional): Dizinleri listelenecek dizin. Defaults to os.getcwd().
+
+    Returns:
+        list: Listenelenen dizinler
+    """
+
+    folderlist = []
+    for name in os.listdir(path):
+        pathname = os.path.join(path, name)
+        if os.path.isdir(pathname) and not is_private(name):
+            folderlist.append(pathname)
+
+    if sort:
+        folderlist.sort()
+
+    return folderlist
+
+
+def listfilepaths(path: str = os.getcwd(), sort: bool = False) -> list:
+    """Dosyaları listeleme
+
+    Args:
+        path (str, optional): Dosyaları listelenecek dizin. Defaults to os.getcwd().
+
+    Returns:
+        list: Listenelenen dosyalar
+    """
+
+    filelist = []
+    for name in os.listdir(path):
+        pathname = os.path.join(path, name)
+        if os.path.isfile(pathname) and not is_private(name):
+            filelist.append(pathname)
+
+    if sort:
+        filelist.sort()
+
+    return filelist
+
+
+def apply_all_files(func, path: str = os.getcwd(), sort: bool = False):
+    for filepath in listfilepaths(path, sort):
+        filepath = os.path.join(path, filepath)
+        func(filepath)
+
+    for folderpath in listfolderpaths(path, sort):
+        folderpath = os.path.join(path, folderpath)
+        apply_all_files(func, path=folderpath, sort=sort)
+
+
+def apply_all_folders(func, path: str = os.getcwd(), sort: bool = False):
+    for folderpath in listfolderpaths(path, sort):
+        folderpath = os.path.join(path, folderpath)
+        func(folderpath)
+        apply_all_folders(func, path=folderpath, sort=sort)
+
+
+def replace_static_links_from_file(filepath) -> str:
+    # Markdownlar için çalışacak
+    if '.md' not in filepath:
+        return
+
     DELIMS = ('[', ']', '(', ')')
     NOT_FOUND = -1
     LINKS = []
@@ -83,7 +164,7 @@ def replace_static_links_from_file() -> str:
             return link_index
 
         # Anchor linkleri atlama
-        if link[0] != "#":
+        if len(link) > 0 and link[0] != "#":
             link_index = reg_link(link)
 
             line = line.replace(f"({link})", f"[{link_index}]")
@@ -91,8 +172,26 @@ def replace_static_links_from_file() -> str:
 
         return line, index
 
+    def append_header(filestr: str) -> str:
+        if len(LINKS) > 0:
+            if filestr[len(filestr) - 1] != "\n":
+                filestr += "\n"
+
+            filestr += "\n<!--DynamicLinks-->\n"
+
+        return filestr
+
+    def append_links(filestr: str):
+        if len(LINKS) > 0:
+            filestr += "\n"
+
+            for i, link in enumerate(LINKS):
+                filestr += f"[{i}]: {link}\n"
+
+        return filestr
+
     filestr = ""
-    with open(FILE_PATH, "r") as file:
+    with open(filepath, "r") as file:
 
         for line in file:
             # Her ayıracın konum indeksini tanımlama
@@ -144,13 +243,12 @@ def replace_static_links_from_file() -> str:
                 index += 1
             filestr += line
 
-    filestr += "\n"
-    for i, link in enumerate(LINKS):
-        filestr += f"\n[{i}]: {link}"
+    filestr = append_header(filestr)
+    filestr = append_links(filestr)
 
-    with open(FILE_PATH, "w") as file:
+    with open(filepath, "w") as file:
         file.write(filestr)
 
 
 if __name__ == "__main__":
-    replace_static_links_from_file()
+    apply_all_files(replace_static_links_from_file, sort=True)
