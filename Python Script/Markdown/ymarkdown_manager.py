@@ -68,7 +68,7 @@ OPTIONS = {
 }
 
 # Görmezden gelinen dosya veya dizinler ('set' olma sebebi tekrarlı verileri engellemektir)
-PRIVATES = {".git", ".vscode", "temp", "phpoffice"}
+PRIVATES = {".git"}
 
 
 def load_cfg():
@@ -201,7 +201,7 @@ def load_cfg():
             if value not in PRIVATES:
                 PRIVATES.add(value)
 
-        with open(CONFIG_FILE, "r") as file:
+        with open(CONFIG_FILE, "r", encoding="utf-8") as file:
             for line in file:
                 # Gereksiz karakterleri kaldırma
                 line = trim_line(line)
@@ -271,7 +271,7 @@ def load_cfg():
             filestr += "\n"
             return filestr
 
-        with open(CONFIG_FILE, "w") as file:
+        with open(CONFIG_FILE, "w", encoding="utf-8") as file:
             file.write(configstr())
             file.write(privatestr())
 
@@ -553,7 +553,7 @@ def insertfile(filename: str, string: str, indicator: str):
             filestr += "\n"
             return filestr
 
-        with open(filename, "r") as file:
+        with open(filename, "r", encoding="utf-8") as file:
             for line in file:
                 if save:
                     filestr += line
@@ -570,7 +570,7 @@ def insertfile(filename: str, string: str, indicator: str):
     filestr = create_filestr()
     # Hatalı işlemleri dosyanın silinmesini engeller
     if len(filestr) > 0:
-        with open(filename, "w") as file:
+        with open(filename, "w", encoding="utf-8") as file:
             file.write(filestr)
     else:
         print("Dosya okumada hata meydana geldi :(")
@@ -684,7 +684,7 @@ def replace_static_links_from_file(filepath) -> str:
         return filestr
 
     filestr = ""
-    with open(filepath, "r") as file:
+    with open(filepath, "r", encoding="utf-8") as file:
 
         for line in file:
             # Her ayıracın konum indeksini tanımlama
@@ -739,7 +739,7 @@ def replace_static_links_from_file(filepath) -> str:
     filestr = append_header(filestr)
     filestr = append_links(filestr)
 
-    with open(filepath, "w") as file:
+    with open(filepath, "w", encoding="utf-8") as file:
         file.write(filestr)
 
 
