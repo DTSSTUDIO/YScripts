@@ -470,6 +470,10 @@ def indexstr(pathname: str = os.getcwd(), headerlvl: int = 2, privates: set = se
 
                 if remove_md and ("md" in pathname):
                     pathname = remove_extension(pathname)
+
+                # Windows yollarındaki "\" karakterinin sorununu giderir
+                pathname = pathname.replace("\\", "/")
+
                 return pathname
 
             def relativepath(pathname: str) -> str:
