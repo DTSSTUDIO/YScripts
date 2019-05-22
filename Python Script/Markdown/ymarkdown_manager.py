@@ -459,7 +459,8 @@ def indexstr(pathname: str = os.getcwd(), headerlvl: int = 2, privates: set = se
             def modifypath(pathname: str) -> str:
                 """Yol verisini düzenleme
 
-                Uzantıyı koşula bağlı kaldırma veya kaldırmama
+                - Uzantıyı koşula bağlı kaldırma veya kaldırmama
+                - Windows için yol düzeltme ( '\\' -> '/' )
 
                 Args:
                     pathname (str): Yol
@@ -468,8 +469,12 @@ def indexstr(pathname: str = os.getcwd(), headerlvl: int = 2, privates: set = se
                     str: Düzenlenen yol
                 """
 
-                if remove_md and ("md" in pathname):
+                if remove_md and (".md" in pathname):
                     pathname = remove_extension(pathname)
+
+                # Windows yollarındaki "\" karakterinin sorununu giderir
+                pathname = pathname.replace("\\", "/")
+
                 return pathname
 
             def relativepath(pathname: str) -> str:
@@ -495,9 +500,10 @@ def indexstr(pathname: str = os.getcwd(), headerlvl: int = 2, privates: set = se
                 """
                 return quote(pathname)
 
-            pathname = modifypath(pathname)
             pathname = relativepath(pathname)
+            pathname = modifypath(pathname)
             pathname = encodedpath(pathname)
+
             return pathname
 
         def create_link(filepath: str) -> str:
