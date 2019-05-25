@@ -42,6 +42,7 @@ Diller ile yazdığım scriptler.
 
 ## C Scripts
 
+- [Binary Tree](./C%20Scripts/Binary%20Tree.c)
 - [Dosyalara Erişim Okul](./C%20Scripts/Dosyalara%20Eri%C5%9Fim%20Okul.c)
 - [DoubleLinkedList-Okul](./C%20Scripts/DoubleLinkedList-Okul.c)
 - [Graph MinSpanningTree Kruksal Algo](./C%20Scripts/Graph%20MinSpanningTree%20Kruksal%20Algo.c)
