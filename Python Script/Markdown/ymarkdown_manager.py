@@ -756,6 +756,7 @@ def indexdir(pathname: str = os.getcwd()) -> str:
             indexstr += create_header(folder, 2)
             for subfolder in subfolders:
                 indexstr += create_link(subfolder)
+            indexstr += "\n"
 
     return indexstr
 
