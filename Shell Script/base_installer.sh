@@ -4,38 +4,72 @@ clear
 echo '---------------------------------------------------------'
 echo "Temel uygulamaların Kurulumu ~ Yunus Emre Ak"
 echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
+echo 'Çıkmak için (CTRL + C) tuşuna basabilirsin.'
 echo '---------------------------------------------------------'
 
-# Temel işlemler
-sudo apt -y dist-upgrade
-sudo apt -y update
-sudo apt -y upgrade
-sudo apt -y autoremove
-
-# Temp dizinine kurulum yapma, hata durumunda silinir.
-cd /tmp
-
-while true; do 
-    read -p "Gömülü oyunları ve reklamları kaldırmak ister misin [y/n] " # -n 1 -r
+while true; do
+    read -p "Paketleri yenilemek ister misin (update, upgrade, dist-upgrade) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
-            sudo apt remove -y --purge aisleriot* gnome-mahjongg gnome-mines 
-            
-            sudo rm /usr/share/applications/ubuntu-amazon-default.desktop
-			sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/Amazon.user.js
-			sudo rm /usr/share/unity-webapps/userscripts/unity-webapps-amazon/manifest.json
-            
+            sudo apt -y dist-upgrade
+            sudo apt -y update
+            sudo apt -y upgrade
+            sudo apt -y autoremove
             break
         };;
         [Nn]* ) break;;
     esac
 done
 
+# Temp dizinine kurulum yapma, hata durumunda silinir.
+cd /tmp
+
 while true; do
     read -p "Temel gereksinimleri kurmak ister misin (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
-            sudo apt install -y unrar fonts-noto-color-emoji gnome-tweaks flameshot
+            fc-list | grep NotoColorEmoji.ttf || (wget -O NotoColorEmoji.ttf https://drive.google.com/uc?id=1IfIKe4b1TqkexanAjIvWFq8ZsW68zFpX && sudo gnome-font-viewer NotoColorEmoji.ttf && fc-cache -f -v)
+            sudo apt install -y unrar gnome-tweaks flameshot
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Gömülü oyunları ve reklamları kaldırmak ister misin [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* )  {
+            sudo apt remove -y --purge aisleriot* gnome-mahjongg gnome-mines 
+            sudo rm -rf /usr/share/applications/ubuntu-amazon-default.desktop /usr/share/unity-webapps/userscripts/unity-webapps-amazon/Amazon.user.js /usr/share/unity-webapps/userscripts/unity-webapps-amazon/manifest.json
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Whatsapp WebApp kısayol oluşturmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            # Sudo yetkisi lazım
+            wget -O ~/Pictures/Icons/whatsapp-webapp.svg https://drive.google.com/uc?id=1orVT5TPEs84ua3HNC0kOXYSGoZyhSW1W
+            echo "#usr/bin/env xdg-open
+[Desktop Entry]
+Name=WhatsApp
+GenericName=WhatsApp
+Comment=WhatsApp desktop webapp
+#Exec=webapp-container --store-session-cookies --webappUrlPatterns=https?://*.whatsapp.com/* --user-agent-string='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36' https://web.whatsapp.com %u
+Exec=/opt/google/chrome/google-chrome --app=https://web.whatsapp.com/
+Terminal=false
+Type=Application
+StartupNotify=true
+MimeType=text/plain;
+Icon=$(echo ~)/Pictures/Icons/whatsapp-webapp.svg
+Categories=Network;Application;
+Keywords=WhatsApp;webapp;
+X-Ubuntu-Gettext-Domain=WhatsApp
+StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.desktop
             break
         };;
         [Nn]* ) break;;
@@ -161,6 +195,7 @@ while true; do
                 case $REPLY in 
                     [Yy]* ) {
                         sudo apt --purge remove -y firefox*
+                        sudo rm -rf ~/.mozilla /etc/firefox /usr/lib/firefox /usr/lib/firefox-addons
                         break
                     };;
                     [Nn]* ) break;;
