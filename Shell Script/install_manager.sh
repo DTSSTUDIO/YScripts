@@ -1,3 +1,6 @@
+# !/bin/bash
+# Copyright © ~ Yunus Emre Ak
+
 # Terminali temizleme
 clear
 
