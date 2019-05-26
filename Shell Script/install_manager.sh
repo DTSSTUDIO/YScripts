@@ -11,7 +11,7 @@ echo 'Çıkmak için (CTRL + C) tuşuna basabilirsin.'
 echo '---------------------------------------------------------'
 
 while true; do
-    read -p "Paketleri yenilemek ister misin (update, upgrade, dist-upgrade) [y/n] " # -n 1 -r
+    read -p "Paketleri yenilemek ister misin? (update, upgrade, dist-upgrade) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             sudo apt -y dist-upgrade
@@ -24,11 +24,23 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "Dosya yöneticisi sağ tık menüsüne kalıpları eklemek ister misin? (Script.sh, text vs.) [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* )  {
+            touch ~/Templates/Text.txt
+            echo '#!/bin/bash' > ~/Templates/Script.sh
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
 # Temp dizinine kurulum yapma, hata durumunda silinir.
 cd /tmp
 
 while true; do
-    read -p "Temel gereksinimleri kurmak ister misin (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
+    read -p "Temel gereksinimleri kurmak ister misin? (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             wget -O NotoColorEmoji.ttf https://drive.google.com/uc?id=1IfIKe4b1TqkexanAjIvWFq8ZsW68zFpX && sudo gnome-font-viewer NotoColorEmoji.ttf 
@@ -41,7 +53,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Gömülü oyunları ve reklamları kaldırmak ister misin [y/n] " # -n 1 -r
+    read -p "Gömülü oyunları ve reklamları kaldırmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             sudo apt remove -y --purge aisleriot* gnome-mahjongg gnome-mines 
@@ -53,7 +65,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Chrome Kurmak ister misin [y/n] " # -n 1 -r
+    read -p "Chrome Kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -61,7 +73,7 @@ while true; do
             rm chrome.deb
 
             while true; do 
-                read -p "Gnome eklentilerinin chrome üzerinden yönetimini aktif etmek ister misin [y/n] " # -n 1 -r
+                read -p "Gnome eklentilerinin chrome üzerinden yönetimini aktif etmek ister misin? [y/n] " # -n 1 -r
                 case $REPLY in 
                     [Yy]* ) {
                         # Gnome Ektensions
@@ -199,7 +211,7 @@ while true; do
 done
 
 while true; do 
-    read -p "System bakım aracı kurmak ister misin [y/n] " # -n 1 -r
+    read -p "System bakım aracı kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             wget -O stacer.deb https://github.com/oguzhaninan/Stacer/releases/download/v1.0.9/stacer_1.0.9_amd64.deb
@@ -348,7 +360,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Miniconda3 kurmak ister misin [y/n] " # -n 1 -r
+    read -p "Miniconda3 kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             # Uyarı notu
@@ -400,7 +412,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Xammp kurmak ister misin [y/n] " # -n 1 -r
+    read -p "Xammp kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             # Bağlantı araçlarını kurma
@@ -432,7 +444,7 @@ while true; do
             done
 
             while true; do
-		        read -p "Wordpress kurmak ister misin [y/n] " # -n 1 -r
+		        read -p "Wordpress kurmak ister misin? [y/n] " # -n 1 -r
 		        case $REPLY in
 		            [Yy]* ) {
                         # Wordpress indirilmesi
@@ -464,7 +476,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Wine kurmak ister misin [y/n] " # -n 1 -r
+    read -p "Wine kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             # 32bit desteğini açma
@@ -491,7 +503,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Nodejs kurmak ister misin [y/n]" # -n 1 -r
+    read -p "Nodejs kurmak ister misin? [y/n]" # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             wget -qO- https://deb.nodesource.com/setup_11.x | sudo -E bash -
@@ -504,7 +516,7 @@ while true; do
 done
 
 while true; do 
-    read -p "Postgresql kurmak ister misin [y/n]" # -n 1 -r
+    read -p "Postgresql kurmak ister misin? [y/n]" # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             sudo apt install -y postgresql

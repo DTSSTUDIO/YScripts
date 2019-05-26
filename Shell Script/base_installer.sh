@@ -9,6 +9,10 @@ echo 'Format Sonrası Toplu Kurulum | Ubuntu 19.04 Disco'
 echo 'Copyright © ~ Yunus Emre Ak'
 echo '---------------------------------------------------------'
 
+# Template oluşturma
+touch ~/Templates/Text.txt
+echo '#!/bin/bash' > ~/Templates/Script.sh
+
 # Firefox Kaldırma
 sudo apt --purge remove -y firefox*
 sudo rm -rf ~/.mozilla /etc/firefox /usr/lib/firefox /usr/lib/firefox-addons
