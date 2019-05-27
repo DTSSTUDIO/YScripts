@@ -6,6 +6,8 @@
 # $2, Varsa özel derlenecek komut
 # Copyright © ~ Yunus Emre Ak
 
+# Detaylı açıklama `docs/ywm.md` dosyasındadır.
+
 # # Yetki verilemzse çalışmaz
 # chmod u+x '~/Documents/YScripts/Shell Script/ywm.sh'
 
