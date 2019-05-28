@@ -122,8 +122,14 @@ Diller ile yazdığım scriptler.
 - [git_push](./Shell%20Script/git_push.sh)
 - [git_reinit](./Shell%20Script/git_reinit.sh)
 - [git_remove](./Shell%20Script/git_remove.sh)
+- [install_manager](./Shell%20Script/install_manager.sh)
 - [read_file](./Shell%20Script/read_file.sh)
 - [restore_local_folder](./Shell%20Script/restore_local_folder.sh)
+- [ywm](./Shell%20Script/ywm.sh)
+
+## docs
+
+- [ywm](./docs/ywm.md)
 
 <!--Index-->
 

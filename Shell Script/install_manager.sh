@@ -180,7 +180,7 @@ while true; do
     read -p "Gnoem varsayılan (Totem) medya oynatıcısını kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt install -y totem
+            sudo apt install -y totem # Video codec ubuntu-restricted-extras 
             break
         };;
         [Nn]* ) break;;

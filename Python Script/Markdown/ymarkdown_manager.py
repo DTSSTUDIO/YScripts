@@ -72,8 +72,9 @@ OPTIONS = {
     )
 }
 
-# Görmezden gelinen dosya veya dizinler ('set' olma sebebi tekrarlı verileri engellemektir)
-PRIVATES = {".git"}
+# TODO: .'lı olanları otomatik gizle, ya da pattern * ekle
+# Görmezden gelinen dosya veya dizinler ('set' olma sebebi tekrarlı verileri engellemektir) 
+PRIVATES = {".git", ".github", ".vscode"}
 
 
 def load_cfg():
