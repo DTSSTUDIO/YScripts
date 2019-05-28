@@ -24,9 +24,9 @@ sudo apt -y upgrade
 sudo apt -y autoremove
 
 # Temel gereksinimleri
-wget -O NotoColorEmoji.ttf https://drive.google.com/uc?id=1IfIKe4b1TqkexanAjIvWFq8ZsW68zFpX && sudo gnome-font-viewer NotoColorEmoji.ttf 
-rm NotoColorEmoji.ttf
-sudo apt install -y unrar gnome-tweaks flameshot
+# wget -O NotoColorEmoji.ttf https://drive.google.com/uc?id=1IfIKe4b1TqkexanAjIvWFq8ZsW68zFpX && sudo gnome-font-viewer NotoColorEmoji.ttf 
+# rm NotoColorEmoji.ttf
+sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji
 
 # Chrome kurulumu
 wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
