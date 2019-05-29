@@ -43,8 +43,7 @@ while true; do
     read -p "Temel gereksinimleri kurmak ister misin? (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
-            #wget -O NotoColorEmoji.ttf https://drive.google.com/uc?id=1IfIKe4b1TqkexanAjIvWFq8ZsW68zFpX && sudo gnome-font-viewer NotoColorEmoji.ttf 
-	        # rm NotoColorEmoji.ttf
+            # Font terminalden yüklenmezse her uygulama görmüyor
             sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji
             break
         };;
