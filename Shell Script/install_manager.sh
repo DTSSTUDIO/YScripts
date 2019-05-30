@@ -10,6 +10,9 @@ echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
 echo 'Çıkmak için (CTRL + C) tuşuna basabilirsin.'
 echo '---------------------------------------------------------'
 
+# Renk ayarları
+xrandr --output eDP-1 --set "Broadcast RGB" "Full"
+
 while true; do
     read -p "Paketleri yenilemek ister misin? (update, upgrade, dist-upgrade) [y/n] " # -n 1 -r
     case $REPLY in 
@@ -508,6 +511,22 @@ while true; do
             wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
 
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "Figma kurmak ister misin? [y/n]" # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            wget -O https://github.com/ChugunovRoman/figma-linux/releases/download/v0.5.1/figma-linux_0.5.1_amd64.deb
+            
+            sudo dpkg -i figma-linux_0.5.1_amd64.deb
+            sudo apt install -y --fix-broken
+            sudo dpkg -i figma-linux_0.5.1_amd64.deb
+            
             break
         };;
         [Nn]* ) break;;
