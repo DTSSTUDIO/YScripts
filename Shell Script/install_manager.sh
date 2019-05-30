@@ -505,7 +505,7 @@ while true; do
     read -p "Nodejs kurmak ister misin? [y/n]" # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            wget -qO- https://deb.nodesource.com/setup_11.x | sudo -E bash -
+            wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash -
             sudo apt install -y nodejs
 
             break
