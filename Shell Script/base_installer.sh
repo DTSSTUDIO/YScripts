@@ -66,14 +66,10 @@ read -p "Git e-postanızı girin (örn: yemreak@gmail.com) " # -n 1 -r
 git config --global user.email "$REPLY"
 read -p "Git için isminizi girin (örn: Yunus Emre) " # -n 1 -r
 git config --global user.name "$REPLY"
+git config --global credential.helper store
 
-while true; do 
-    read -p "Git kimlik bilgileri saklansın mı? (her defasında yazmayı engeller) [y/n] " # -n 1 -r
-    case $REPLY in 
-        [Yy]* ) {
-            git config --global credential.helper store
-            break
-        };;
-        [Nn]* ) break;;
-    esac
-done
+# OnlyOfficeDesktop paketinin indirilmesi
+wget -O onlyofficedesktop.deb https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
+
+# Paketin yüklenmesi (-f: --fix-broken)
+sudo apt install -yf ./onlyofficedesktop.deb

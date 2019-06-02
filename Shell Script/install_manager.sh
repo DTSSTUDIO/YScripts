@@ -71,7 +71,7 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo dpkg -i chrome.deb
+            sudo apt install -yf ./chrome.deb
             rm chrome.deb
 
             while true; do 
@@ -217,7 +217,7 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             wget -O stacer.deb https://github.com/oguzhaninan/Stacer/releases/download/v1.0.9/stacer_1.0.9_amd64.deb
-            sudo dpkg -i stacer.deb 
+            sudo apt install -yf ./stacer.deb 
             rm stacer.deb
             break
         };;
@@ -230,9 +230,7 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             # wget -O mailspring.deb https://updates.getmailspring.com/download?platform=linuxDeb
-            # sudo dpkg -i  mailspring.deb
-            # sudo apt install -y --fix-broken
-            # sudo dpkg -i  mailspring.deb
+            # sudo apt install -yf  ./mailspring.deb
             # rm mailspring.deb
             sudo snap install mailspring
 
@@ -261,14 +259,9 @@ while true; do
             # OnlyOfficeDesktop paketinin indirilmesi
             wget -O onlyofficedesktop.deb https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
 
-            # Paketin yüklenmesi
-            sudo dpkg -i onlyofficedesktop.deb
-
-            # Yükleme sırasında hata olursa gereksinimleri kurma
-            sudo apt install -yf
-
-            # Tekrar ndeneme
-            sudo dpkg -i onlyofficedesktop.deb
+            # Paketin yüklenmesi (-f: --fix-broken)
+            sudo apt install -yf ./onlyofficedesktop.deb
+            rm onlyofficedesktop.deb
 
             while true; do
                 read -p "Libreoffice'i kaldırmak ister misin? [y/n] "
@@ -295,7 +288,7 @@ while true; do
         [Yy]* ) {
             # VsCode
             wget -O code.deb https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/code_1.33.1-1554971066_amd64.deb
-            sudo dpkg -i code.deb
+            sudo apt install -yf ./code.deb
             rm code.deb
 
             break
@@ -523,9 +516,8 @@ while true; do
         [Yy]* ) {
             wget -O https://github.com/ChugunovRoman/figma-linux/releases/download/v0.5.1/figma-linux_0.5.1_amd64.deb
             
-            sudo dpkg -i figma-linux_0.5.1_amd64.deb
-            sudo apt install -y --fix-broken
-            sudo dpkg -i figma-linux_0.5.1_amd64.deb
+            sudo apt install -yf ./figma-linux_0.5.1_amd64.deb
+            rm figma-linux_0.5.1_amd64.deb
             
             break
         };;
