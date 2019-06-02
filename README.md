@@ -10,7 +10,7 @@ Diller ile yazdığım scriptler.
 
 - [Batch Script](#batch-script)
   - [cli_downloader](#clidownloader)
-    - [utils](#utils)
+  - [instabot_installer](#instabotinstaller)
 - [C Scripts](#c-scripts)
 - [IPyton Scripts](#ipyton-scripts)
 - [Java Script](#java-script)
@@ -23,6 +23,7 @@ Diller ile yazdığım scriptler.
   - [Dictionary](#dictionary)
   - [Markdown](#markdown)
 - [Shell Script](#shell-script)
+- [docs](#docs)
 - [Lisans ve Teferruatlar](#lisans-ve-teferruatlar)
 
 <!--Index-->
