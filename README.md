@@ -34,11 +34,10 @@ Diller ile yazdığım scriptler.
 - [inputs](./Batch%20Script/cli_downloader/inputs.txt)
 - [install](./Batch%20Script/cli_downloader/install.bat)
 
-#### utils
+### instabot_installer
 
-- [aria2c](./Batch%20Script/cli_downloader/utils/aria2c.exe)
-- [renamer](./Batch%20Script/cli_downloader/utils/renamer.bat)
-- [wget](./Batch%20Script/cli_downloader/utils/wget.exe)
+- [Instabot](./Batch%20Script/instabot_installer/Instabot.bat)
+- [README](./Batch%20Script/instabot_installer/README.md)
 
 ## C Scripts
 
