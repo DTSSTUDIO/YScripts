@@ -28,13 +28,13 @@ sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji
 
 # Chrome kurulumu
 wget -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i chrome.deb
+sudo apt install -yf ./chrome.deb
 rm chrome.deb
 
 # Gnome eklentileri
 sudo apt install -y chrome-gnome-shell
-sudo apt install -y gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0
-google-chrome https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en https://extensions.gnome.org/extension/1160/dash-to-panel/ https://extensions.gnome.org/extension/1162/emoji-selector/ https://extensions.gnome.org/extension/779/clipboard-indicator/
+sudo apt-get install gir1.2-clutter-1.0 gir1.2-clutter-gst-3.0 gir1.2-gtkclutter-1.0
+google-chrome https://chrome.google.com/webstore/detail/gnome-shell-integration/gphhapmejobijbbhgpjhcjognlahblep?hl=en https://extensions.gnome.org/extension/1160/dash-to-panel/ https://extensions.gnome.org/extension/750/openweather/ https://extensions.gnome.org/extension/1162/emoji-selector/ https://extensions.gnome.org/extension/779/clipboard-indicator/ https://extensions.gnome.org/extension/690/easyscreencast/
 
 # Whatsapp kısayolunu oluşturma
 mkdir -p ~/Pictures/Icons/
@@ -56,7 +56,7 @@ X-Ubuntu-Gettext-Domain=WhatsApp
 StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.desktop'
 
 # Temel uygulamlar
-sudo apt install -y cheese totem
+sudo apt install -y cheese totem kolourpaint
 
 # Git kurulumu
 sudo apt install -y git git-lfs
@@ -68,8 +68,21 @@ read -p "Git için isminizi girin (örn: Yunus Emre) " # -n 1 -r
 git config --global user.name "$REPLY"
 git config --global credential.helper store
 
+# VsCode
+wget -O code.deb https://go.microsoft.com/fwlink/?LinkID=760868
+sudo apt install -yf ./code.deb
+rm code.deb
+
+# Fira Code
+wget "https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip"
+unzip FiraCode_1.206.zip -d "./Fira Code 1.206"
+rm FiraCode_1.206.zip
+mv Fira\ Code\ 1.206/ $HOME/.fonts
+fc-cache
+
 # OnlyOfficeDesktop paketinin indirilmesi
 wget -O onlyofficedesktop.deb https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
 
 # Paketin yüklenmesi (-f: --fix-broken)
 sudo apt install -yf ./onlyofficedesktop.deb
+rm onlyofficedesktop.deb

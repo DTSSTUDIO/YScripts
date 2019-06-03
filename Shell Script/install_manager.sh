@@ -287,9 +287,23 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             # VsCode
-            wget -O code.deb https://az764295.vo.msecnd.net/stable/51b0b28134d51361cf996d2f0a1c698247aeabd8/code_1.33.1-1554971066_amd64.deb
+            wget -O code.deb https://go.microsoft.com/fwlink/?LinkID=760868
             sudo apt install -yf ./code.deb
             rm code.deb
+
+            while true; do
+                read -p "Fira Code indirmek ister misin? [y/n] " # -n 1 -r
+                case $REPLY in 
+                    [Yy]* )  {
+                        wget "https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip"
+                        unzip FiraCode_1.206.zip -d "./Fira Code 1.206"
+                        rm FiraCode_1.206.zip
+                        mv Fira\ Code\ 1.206/ $HOME/.fonts
+                        fc-cache
+                    };;
+                    [Nn]* ) break;;
+                esac
+            done
 
             break
         };;
