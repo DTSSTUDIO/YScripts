@@ -109,6 +109,8 @@ sudo apt install -y xdotool &> /dev/null
 mkdir -p "$HOME/Tools" &> /dev/null
 wget -O "$HOME/Tools/ywm.sh" https://raw.githubusercontent.com/yedhrab/YScripts/master/Shell%20Script/ywm.sh &> /dev/null
 sudo chmod u+x $HOME/Tools/ywm.sh
+wget -O last.dconf https://drive.google.com/uc?id=1LjLJY1NxtgOIWxFOeHegj_aALMRfMLo3
+dconf load / < last.dconf 
 echo "Pencere yönetim scripti indirildi 🌪"
 
 echo "OnlyOfficeDesktop kurulumu tamamlandı 🎉"
