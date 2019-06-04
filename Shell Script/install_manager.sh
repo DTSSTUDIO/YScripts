@@ -419,6 +419,25 @@ while true; do
 done
 
 while true; do 
+    read -p "- YWM pencere yönetim scriptimi yüklemek ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y xdotool &> /dev/null
+
+            mkdir -p "$HOME/Tools" &> /dev/null
+            wget -O "$HOME/Tools/ywm.sh" https://raw.githubusercontent.com/yedhrab/YScripts/master/Shell%20Script/ywm.sh &> /dev/null
+            sudo chmod u+x $HOME/Tools/ywm.sh
+
+            echo "Pencere yönetim scripti indirildi 🌪"
+            echo ""
+
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
     read -p "- Python için yönetim araçlarının kurulumunu yapmak ister misin? (pip3, pylint ve autopep8) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {

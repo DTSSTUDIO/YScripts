@@ -105,6 +105,12 @@ wget -O "$HOME/Downloads/onlyofficedesktop.deb" https://download.onlyoffice.com/
 sudo apt install -yf "$HOME/Downloads/onlyofficedesktop.deb" &> /dev/null
 rm "$HOME/Downloads/onlyofficedesktop.deb" &> /dev/null
 
+sudo apt install -y xdotool &> /dev/null
+mkdir -p "$HOME/Tools" &> /dev/null
+wget -O "$HOME/Tools/ywm.sh" https://raw.githubusercontent.com/yedhrab/YScripts/master/Shell%20Script/ywm.sh &> /dev/null
+sudo chmod u+x $HOME/Tools/ywm.sh
+echo "Pencere yönetim scripti indirildi 🌪"
+
 echo "OnlyOfficeDesktop kurulumu tamamlandı 🎉"
 
 wget -O stacer.deb https://github.com/oguzhaninan/Stacer/releases/download/v1.0.9/stacer_1.0.9_amd64.deb &> /dev/null
