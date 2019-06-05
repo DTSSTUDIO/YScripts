@@ -41,8 +41,8 @@ echo "Paketler yenilendi 🎉"
 sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji &> /dev/null
 echo "Artık emoji kullanabilir, özelleştirme yapabilir ve rar dosyalarını ayrıştırabilirsin 🎉"
 
-mkdir -p ~/Pictures/Icons/Svg &> /dev/null
-wget -O ~/Pictures/Icons/Svg/whatsapp-webapp.svg https://drive.google.com/uc?id=1V5nqM6ocfWVcL682JtvT7urMBkVtGl2k &> /dev/null
+mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
+wget -O $HOME/Pictures/Icons/Svg/whatsapp_webapp.svg https://drive.google.com/uc?id=1V5nqM6ocfWVcL682JtvT7urMBkVtGl2k &> /dev/null
 sudo bash -c 'echo "#usr/bin/env xdg-open
 [Desktop Entry]
 Name=WhatsApp
@@ -53,12 +53,31 @@ Terminal=false
 Type=Application
 StartupNotify=true
 MimeType=text/plain;
-Icon=$(echo ~)/Pictures/Icons/Svg/whatsapp-webapp.svg
+Icon=$(echo $HOME/Pictures/Icons/Svg/whatsapp_webapp.svg)
 Categories=Network;Application;
 Keywords=WhatsApp;webapp;
 X-Ubuntu-Gettext-Domain=WhatsApp
 StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.desktop'
 echo "Whatsapp kısayolu oluşturuldu 🎉"
+
+mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
+wget -O $HOME/Pictures/Icons/Png/google_translate.png https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png &> /dev/null
+sudo bash -c 'echo "#usr/bin/env xdg-open
+[Desktop Entry]
+Name=GoogleTranslate
+GenericName=GoogleTranslate
+Comment=GoogleTranslate desktop webapp
+Exec=/opt/google/chrome/google-chrome --app=https://translate.google.com/#view=home&op=translate&sl=auto&tl=tr
+Terminal=false
+Type=Application
+StartupNotify=true2
+MimeType=text/plain;
+Icon=$(echo $HOME/Pictures/Icons/Png/google_translate.png)
+Categories=Network;Application;
+Keywords=GoogleTranslate;webapp;
+X-Ubuntu-Gettext-Domain=GoogleTranslate
+StartupWMClass=translate.google.com" > /usr/share/applications/chrome-webapp.desktop'
+echo "GoogleÇeviri kısayolu oluşturuldu 🎉"
 
 sudo apt install -y kolourpaint &> /dev/null 
 echo "Kolourpaint kurulumu tamamlandı 🎉"
@@ -110,7 +129,8 @@ mkdir -p "$HOME/Tools" &> /dev/null
 wget -O "$HOME/Tools/ywm.sh" https://raw.githubusercontent.com/yedhrab/YScripts/master/Shell%20Script/ywm.sh &> /dev/null
 sudo chmod u+x $HOME/Tools/ywm.sh
 wget -O last.dconf https://drive.google.com/uc?id=1LjLJY1NxtgOIWxFOeHegj_aALMRfMLo3
-dconf load / < last.dconf 
+dconf load / < last.dconf
+rm last.dconf
 echo "Pencere yönetim scripti indirildi 🌪"
 
 echo "OnlyOfficeDesktop kurulumu tamamlandı 🎉"

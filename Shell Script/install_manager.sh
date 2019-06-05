@@ -84,12 +84,12 @@ while true; do
 done
 
 while true; do
-    read -p "- Dosya yöneticisi sağ tık menüsüne kalıpları eklemek ister misin? (Script.sh, text vs.) [y/n] " # -n 1 -r
+    read -p "- Dosya yöneticisi sağ tık menüsüne kalıpları eklemek ister misin? (sh, txt, py vs.) [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             touch $HOME/Templates/Text.txt
-            echo '#!/bin/bash' > $HOME/Templates/Script.sh
-
+            echo "#!/bin/bash" > $HOME/Templates/Script.sh
+            echo "#!/usr/bin/python" > $HOME/Templates/Script.py
             echo "Artık dizinlere sağ tıklyarak text veya script dosyası oluşturabilirsin 🎉"
             echo ""
              
@@ -139,7 +139,7 @@ while true; do
     case $REPLY in 
         [Yy]* ) {
             mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
-            wget -O $HOME/Pictures/Icons/Svg/whatsapp-webapp.svg https://drive.google.com/uc?id=1V5nqM6ocfWVcL682JtvT7urMBkVtGl2k &> /dev/null
+            wget -O $HOME/Pictures/Icons/Svg/whatsapp_webapp.svg https://drive.google.com/uc?id=1V5nqM6ocfWVcL682JtvT7urMBkVtGl2k &> /dev/null
             sudo bash -c 'echo "#usr/bin/env xdg-open
 [Desktop Entry]
 Name=WhatsApp
@@ -150,13 +150,44 @@ Terminal=false
 Type=Application
 StartupNotify=true
 MimeType=text/plain;
-Icon=$(echo $HOME)/Pictures/Icons/Svg/whatsapp-webapp.svg
+Icon=$(echo $HOME/Pictures/Icons/Svg/whatsapp_webapp.svg)
 Categories=Network;Application;
 Keywords=WhatsApp;webapp;
 X-Ubuntu-Gettext-Domain=WhatsApp
 StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.desktop'
 
             echo "Whatsapp kısayolu oluşturuldu 🎉"
+            echo ""            
+            
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "- Chrome GoogleÇeviri kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
+            wget -O $HOME/Pictures/Icons/Png/google_translate.png https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png &> /dev/null
+            sudo bash -c 'echo "#usr/bin/env xdg-open
+[Desktop Entry]
+Name=GoogleTranslate
+GenericName=GoogleTranslate
+Comment=GoogleTranslate desktop webapp
+Exec=/opt/google/chrome/google-chrome --app=https://translate.google.com/#view=home&op=translate&sl=auto&tl=tr
+Terminal=false
+Type=Application
+StartupNotify=true2
+MimeType=text/plain;
+Icon=$(echo $HOME/Pictures/Icons/Png/google_translate.png)
+Categories=Network;Application;
+Keywords=GoogleTranslate;webapp;
+X-Ubuntu-Gettext-Domain=GoogleTranslate
+StartupWMClass=translate.google.com" > /usr/share/applications/chrome-webapp.desktop'
+
+            echo "GoogleÇeviri kısayolu oluşturuldu 🎉"
             echo ""            
             
             break
