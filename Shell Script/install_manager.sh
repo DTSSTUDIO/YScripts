@@ -103,11 +103,11 @@ done
 cd /tmp
 
 while true; do
-    read -p "- Temel gereksinimleri kurmak ister misin? (unrar, emoji-font, gnome-tweaks, flameshot [y/n] " # -n 1 -r
+    read -p "- Temel gereksinimleri kurmak ister misin? (unrar, emoji-font, gnome-tweaks, flameshot, NTFS desteği, GTK canberra [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             # Font terminalden yüklenmezse her uygulama görmüyor
-            sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji &> /dev/null
+            sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji ntfs-3g libcanberra-gtk-module &> /dev/null
             
             echo "Artık emoji kullanabilir, özelleştirme yapabilir ve rar dosyalarını ayrıştırabilirsin 🎉"
             echo ""

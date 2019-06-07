@@ -38,7 +38,7 @@ sudo apt -y autoremove &> /dev/null
 echo "Paketler yenilendi 🎉"
 
 # Font terminalden yüklenmezse her uygulama görmüyor
-sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji &> /dev/null
+sudo apt install -y unrar gnome-tweaks flameshot fonts-noto-color-emoji ntfs-3g libcanberra-gtk-module &> /dev/null
 echo "Artık emoji kullanabilir, özelleştirme yapabilir ve rar dosyalarını ayrıştırabilirsin 🎉"
 
 mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
