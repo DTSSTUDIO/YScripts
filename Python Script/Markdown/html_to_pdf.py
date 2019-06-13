@@ -7,9 +7,5 @@ config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
 
 for name in os.listdir():
     if ".html" in name:
-        output = os.path.join("out",name.replace('.html', ''))
+        output = os.path.join("out", name.replace('.html', ''))
         pdfkit.from_file(f"{name}", f"{output}.pdf", configuration=config)
-
-
-
-
