@@ -1,44 +1,32 @@
 # KeepToText
 
-Convert a Google Takeout zip file containing Google Keep notes to a
-directory of text files, suitable for import into systems such as Evernote
+Google Takeout zip dosyalarını Evernote veya CintaNotes formatına çevirme.
 
-Use Google Takeout to get a zip file, which will contain your Keep notes
+> Takeout.zip dosyasında **sadece** keep notlarının olması gerekmekte.
 
-**NOTE**: Be sure that *only* Keep files are included in the Google Takeout zip file, not contacts or any other Google data
+## Kullanım
 
-Usage:
+- Basit kullanım: `python keepToText.py zipFile`
+- Tam kullanım: `python keepToText.py [-h] [--encoding ENCODING] [--system-encoding] [--format {Evernote,CintaNotes}] zipFile`
 
-  simple usage: `python keepToText.py zipFile`
-  
-  full usage: `python keepToText.py [-h] [--encoding ENCODING] [--system-encoding]
-                     [--format {Evernote,CintaNotes}]
-                     zipFile`
+```sh
+python keepToText.py --encoding "utf-8-sig" --format Evernote takeout-20190630T094457Z-001.zip
+```
 
-By default, the text files will be placed in a directory called `Text`, under the same
-directory as the zip file. You may import that folder into Evernote.
+> Varsayılan olarak tüm çıktıları aynı dizinde `Text` dizini oluşturup içine atar.
 
-If you specify `--format CintaNotes`, a single `cintanotes.xml` file containing all your notes will be
-created in the same directory as the zip file. You may import that folder into CintaNotes.
+## Ayarlar
 
-Works with Python 2 or 3
+- `--encoding` Formatlama ayarıdır
+  - `--system-encoding` ayarı ile sistemin varsayılan codecleri kullanılır
+  - Varsayılanı `utf-8`'dir
+  - Evernote için `utf-8-sig` kullanın
 
-**Options**:
-  
-  Use the `--encoding` option to specify an output encoding, for example, `--encoding latin_1`
-  
-  Use the `--system-encoding` option to use your operating system's current encoding
-  
-  The default output encoding is `utf-8`
-  
-  Use the `--format` option to choose between Evernote and CintaNotes, for example, `--format CintaNotes`
-  
-  The default format is Evernote
-    
-**Module dependencies**:
+## Modül Bağımlılıkları
 
-   For Evernote format: HTMLParser
-   
-   For CintaNotes format: lxml, mako, and python-dateutil
-   
-   To install a dependency, use: `python -m pip install [dependency]`
+| Format     | Bağımlılık                  |
+| ---------- | --------------------------- |
+| Evernote   | HTMLParser                  |
+| CintaNotes | lxml, mako, python-dateutil |
+
+> İndirmek için: `python -m pip install <bağımlılık>`
