@@ -118,6 +118,22 @@ while true; do
     esac
 done
 
+while true; do
+    read -p "- Copyq ile clipboard yönetimi sağlamak ister misin [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* )  {
+            # Font terminalden yüklenmezse her uygulama görmüyor
+            sudo apt install -y copyq &> /dev/null
+            
+            echo "Artık clipboard geçmisine bakabilir, onu kontrol edebilirsin 🎉"
+            echo ""
+            
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
 while true; do 
     read -p "- Gömülü oyunları ve reklamları kaldırmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 

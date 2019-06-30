@@ -92,8 +92,8 @@ echo "Totem kurulumu tamamlandı 🎉"
 # Git ve Git-lfs Kurulumu
 wget -O "$HOME/Downloads/script.deb.sh" "https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh"
 sudo bash "$HOME/Downloads/script.deb.sh"
-sudo apt install -y git git-lfs &> /dev/null
-git lfs install &> /dev/null
+sudo apt install -y git git-lfs
+git lfs install
 rm "$HOME/Downloads/script.deb.sh" &> /dev/null
 
 read -p "Git e-postanızı girin (örn: yemreak@gmail.com) " # -n 1 -r
@@ -125,7 +125,7 @@ sudo apt install -yf "$HOME/Downloads/onlyofficedesktop.deb" &> /dev/null
 rm "$HOME/Downloads/onlyofficedesktop.deb" &> /dev/null
 
 sudo apt install -y xdotool &> /dev/null
-mkdir -p "$HOME/Tools" &> /dev/null
+mkdir -p "$HOME/Tools" &> /dev/nulle
 wget -O "$HOME/Tools/ywm.sh" https://raw.githubusercontent.com/yedhrab/YScripts/master/Shell%20Script/ywm.sh &> /dev/null
 sudo chmod u+x $HOME/Tools/ywm.sh
 wget -O last.dconf https://drive.google.com/uc?id=1LjLJY1NxtgOIWxFOeHegj_aALMRfMLo3
@@ -133,13 +133,17 @@ dconf load / < last.dconf
 rm last.dconf
 echo "Pencere yönetim scripti indirildi 🌪"
 
-echo "OnlyOfficeDesktop kurulumu tamamlandı 🎉"
+echo "OnlyOfficeDesktop kurulumu tamameelandı 🎉"
 
 wget -O stacer.deb https://github.com/oguzhaninan/Stacer/releases/download/v1.0.9/stacer_1.0.9_amd64.deb &> /dev/null
 sudo apt install -yf ./stacer.deb &> /dev/null
 rm stacer.deb &> /dev/null
 
 echo "Bakım aracı kuruldu 🎉"
+
+sudo apt install -y copyq &> /dev/null
+
+echo "Artık clipboard geçmisine bakabilir, onu kontrol edebilirsin 🎉"
 
 sudo apt autoremove &> /dev/null
 
