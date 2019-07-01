@@ -151,7 +151,7 @@ while true; do
 done
 
 while true; do 
-    read -p "- Chrome WhatsApp kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    read -p "- Chrome WhatsApp başlatıcısı oluşturmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
@@ -172,7 +172,7 @@ Keywords=WhatsApp;webapp;
 X-Ubuntu-Gettext-Domain=WhatsApp
 StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.desktop'
 
-            echo "Whatsapp kısayolu oluşturuldu 🎉"
+            echo "Whatsapp başlatıcısı oluşturuldu 🎉"
             echo ""            
             
             break
@@ -182,7 +182,7 @@ StartupWMClass=web.whatsapp.com" > /usr/share/applications/whatsapp-webapp.deskt
 done
 
 while true; do 
-    read -p "- Chrome GoogleÇeviri kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    read -p "- Chrome GoogleÇeviri başlatıcısı oluşturmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             mkdir -p $HOME/Pictures/Icons/Png &> /dev/null
@@ -203,7 +203,7 @@ Keywords=GoogleTranslate;webapp;
 X-Ubuntu-Gettext-Domain=GoogleTranslate
 StartupWMClass=translate.google.com" > /usr/share/applications/chrome-webapp.desktop'
 
-            echo "GoogleÇeviri kısayolu oluşturuldu 🎉"
+            echo "GoogleÇeviri başlatıcısı oluşturuldu 🎉"
             echo ""            
             
             break
@@ -213,7 +213,7 @@ StartupWMClass=translate.google.com" > /usr/share/applications/chrome-webapp.des
 done
 
 while true; do 
-    read -p "- Chrome Evernote kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    read -p "- Chrome Evernote başlatıcısı oluşturmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             mkdir -p $HOME/Pictures/Icons/Png &> /dev/null
@@ -234,7 +234,7 @@ Keywords=Evernote;webapp;
 X-Ubuntu-Gettext-Domain=Evernote
 StartupWMClass=www.evernote.com" > /usr/share/applications/evernote-webapp.desktop'
 
-            echo "Evernote kısayolu oluşturuldu 🎉"
+            echo "Evernote başlatıcısı oluşturuldu 🎉"
             echo ""            
             
             break

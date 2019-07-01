@@ -31,5 +31,5 @@ Categories=Network;Application;
 Keywords=Evernote;webapp;
 X-Ubuntu-Gettext-Domain=$name
 StartupWMClass=$url" > /usr/share/applications/$name-webapp.desktop
-echo "$name kısayolu oluşturuldu 🎉"
+echo "$name başlatıcısı oluşturuldu 🎉"
 '
