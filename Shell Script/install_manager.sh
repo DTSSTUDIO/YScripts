@@ -1,12 +1,12 @@
 # !/bin/bash
-# Copyright © $HOME Yunus Emre Ak
+# Copyright © ~ Yunus Emre Ak
 
 # Terminali temizleme
 clear
 
 echo ""
 echo '---------------------------------------------------------'
-echo "Temel uygulamaların Kurulumu $HOME Yunus Emre Ak"
+echo "Temel uygulamaların Kurulumu ~ Yunus Emre Ak"
 echo 'Ubuntu 19.04 Disco üzerinde denenmiştir.'
 echo 'Çıkmak için (CTRL + C) tuşuna basabilirsin.'
 echo '---------------------------------------------------------'
@@ -151,7 +151,7 @@ while true; do
 done
 
 while true; do 
-    read -p "- Chrome whatsapp kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    read -p "- Chrome WhatsApp kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
             mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
@@ -185,7 +185,7 @@ while true; do
     read -p "- Chrome GoogleÇeviri kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            mkdir -p $HOME/Pictures/Icons/Svg &> /dev/null
+            mkdir -p $HOME/Pictures/Icons/Png &> /dev/null
             wget -O $HOME/Pictures/Icons/Png/google_translate.png https://upload.wikimedia.org/wikipedia/commons/d/db/Google_Translate_Icon.png &> /dev/null
             sudo bash -c 'echo "#usr/bin/env xdg-open
 [Desktop Entry]
@@ -213,6 +213,53 @@ StartupWMClass=translate.google.com" > /usr/share/applications/chrome-webapp.des
 done
 
 while true; do 
+    read -p "- Chrome Evernote kısayolu oluşturmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            mkdir -p $HOME/Pictures/Icons/Png &> /dev/null
+            wget -O $HOME/Pictures/Icons/Png/evernote.png http://www.wikizero.biz/index.php?q=aHR0cHM6Ly91cGxvYWQud2lraW1lZGlhLm9yZy93aWtpcGVkaWEvY29tbW9ucy90aHVtYi9hL2E0L0V2ZXJub3RlX0ljb24ucG5nLzIyMHB4LUV2ZXJub3RlX0ljb24ucG5n &> /dev/null
+            sudo bash -c 'echo "#usr/bin/env xdg-open
+[Desktop Entry]
+Name=Evernote
+GenericName=Evernote
+Comment=Evernote desktop webapp
+Exec=/opt/google/chrome/google-chrome --app=https://www.evernote.com/client/web
+Terminal=false
+Type=Application
+StartupNotify=true2
+MimeType=text/plain;
+Icon=$(echo $HOME/Pictures/Icons/Png/evernote.png)
+Categories=Network;Application;
+Keywords=Evernote;webapp;
+X-Ubuntu-Gettext-Domain=Evernote
+StartupWMClass=www.evernote.com" > /usr/share/applications/evernote-webapp.desktop'
+
+            echo "Evernote kısayolu oluşturuldu 🎉"
+            echo ""            
+            
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+while true; do 
+    read -p "- Tusk (evernote yönetim uygulaması) kurmak ister misin? [y/n] " # -n 1 -r
+    case $REPLY in 
+        [Yy]* ) {
+            sudo apt install -y tusk &> /dev/null
+            
+            echo "Tusk kurulumu tamamlandı 🎉"
+            echo "" 
+            
+            break
+        };;
+        [Nn]* ) break;;
+    esac
+done
+
+
+while true; do 
     read -p "- Telegram kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
@@ -228,7 +275,7 @@ while true; do
 done
 
 while true; do 
-    read -p "- Kolourpaint p(aint alternatifi resim yönetim uygulaması) kurmak ister misin? [y/n] " # -n 1 -r
+    read -p "- Kolourpaint (paint alternatifi resim yönetim uygulaması) kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* )  {
             sudo apt install -y kolourpaint &> /dev/null
