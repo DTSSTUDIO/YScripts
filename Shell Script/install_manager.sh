@@ -247,7 +247,8 @@ while true; do
     read -p "- Tusk (evernote yönetim uygulaması) kurmak ister misin? [y/n] " # -n 1 -r
     case $REPLY in 
         [Yy]* ) {
-            sudo apt install -y tusk &> /dev/null
+            wget https://github.com/klaussinani/tusk/releases/download/v0.23.0/tusk_0.23.0_amd64.deb &> /dev/null
+            sudo apt install -yf ./tusk_0.23.0_amd64 &> /dev/null
             
             echo "Tusk kurulumu tamamlandı 🎉"
             echo "" 
