@@ -28,7 +28,7 @@ StartupNotify=true2
 MimeType=text/plain;
 Icon=$icon
 Categories=Network;Application;
-Keywords=Evernote;webapp;
+Keywords=$name;webapp;
 X-Ubuntu-Gettext-Domain=$name
 StartupWMClass=$url" > /usr/share/applications/$name-webapp.desktop
 echo "$name başlatıcısı oluşturuldu 🎉"
