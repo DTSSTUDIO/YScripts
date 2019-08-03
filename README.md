@@ -10,25 +10,38 @@ Diller ile yazdığım scriptler.
 
 - [Batch Script](#batch-script)
   - [cli_downloader](#clidownloader)
+    - [utils](#utils)
   - [instabot_installer](#instabotinstaller)
+    - [utils](#utils-1)
 - [C Scripts](#c-scripts)
 - [IPyton Scripts](#ipyton-scripts)
 - [Java Script](#java-script)
-- [Javascript Script](#javascript-script)
+- [Javascript API](#javascript-api)
+  - [Instagram](#instagram)
   - [Nodejs](#nodejs)
+  - [Selenium](#selenium)
 - [Php Script](#php-script)
   - [dumb](#dumb)
   - [excel](#excel)
 - [Python Script](#python-script)
   - [Dictionary](#dictionary)
+  - [Image Processing](#image-processing)
+  - [ImgToText (OCR)](#imgtotext-ocr)
+    - [utils](#utils-2)
+  - [KeepToText](#keeptotext)
   - [Markdown](#markdown)
+  - [Payload Dumper](#payload-dumper)
 - [Shell Script](#shell-script)
+- [Visual Basic Scripts](#visual-basic-scripts)
 - [docs](#docs)
+- [out](#out)
 - [Lisans ve Teferruatlar](#lisans-ve-teferruatlar)
 
 <!--Index-->
 
 ## Batch Script
+
+- [service_reset](./Batch%20Script/service_reset.bat)
 
 ### cli_downloader
 
@@ -74,21 +87,34 @@ Diller ile yazdığım scriptler.
 - [README](./IPyton%20Scripts/README.md)
 - [Selenium Video İndirici](./IPyton%20Scripts/Selenium%20Video%20%C4%B0ndirici.ipynb)
 - [Tensorlow Obje Algılayıcısını Colab Üzerinde Eğitme](./IPyton%20Scripts/Tensorlow%20Obje%20Alg%C4%B1lay%C4%B1c%C4%B1s%C4%B1n%C4%B1%20Colab%20%C3%9Czerinde%20E%C4%9Fitme.ipynb)
+- [YoutubeDownloader](./IPyton%20Scripts/YoutubeDownloader.ipynb)
 
 ## Java Script
 
 - [GroupLayouts](./Java%20Script/GroupLayouts.java)
 
-## Javascript Script
+## Javascript API
 
-- [BulkUnfollow](./Javascript%20Script/BulkUnfollow.js)
-- [InstagramBulkUrls](./Javascript%20Script/InstagramBulkUrls.js)
-- [gettyImages](./Javascript%20Script/gettyImages.js)
-- [instagram](./Javascript%20Script/instagram.js)
+- [console_extender](./Javascript%20API/console_extender.js)
+- [coursera](./Javascript%20API/coursera.js)
+- [gettyImages](./Javascript%20API/gettyImages.js)
+- [youtube_to_md](./Javascript%20API/youtube_to_md.js)
+
+### Instagram
+
+- [bulk_unfollow](./Javascript%20API/Instagram/bulk_unfollow.js)
+- [insta_bulk_images](./Javascript%20API/Instagram/insta_bulk_images.js)
+- [instagram](./Javascript%20API/Instagram/instagram.js)
 
 ### Nodejs
 
-- [https_request](./Javascript%20Script/Nodejs/https_request.js)
+- [https_request](./Javascript%20API/Nodejs/https_request.js)
+
+### Selenium
+
+- [biletix](./Javascript%20API/Selenium/biletix.js)
+- [gettyImages](./Javascript%20API/Selenium/gettyImages.js)
+- [kariyer](./Javascript%20API/Selenium/kariyer.js)
 
 ## Php Script
 
@@ -109,8 +135,11 @@ Diller ile yazdığım scriptler.
 - [InstagramPoster](./Python%20Script/InstagramPoster.py)
 - [config_manager](./Python%20Script/config_manager.py)
 - [func_speed_test](./Python%20Script/func_speed_test.py)
+- [html_to_pdf](./Python%20Script/html_to_pdf.py)
+- [init_paths](./Python%20Script/init_paths.py)
 - [mouse_handler](./Python%20Script/mouse_handler.py)
 - [speed_tester](./Python%20Script/speed_tester.py)
+- [teststr](./Python%20Script/teststr.py)
 
 ### Dictionary
 
@@ -119,11 +148,43 @@ Diller ile yazdığım scriptler.
 - [input1](./Python%20Script/Dictionary/input1.dic)
 - [tr_TR](./Python%20Script/Dictionary/tr_TR.dic)
 
+### Image Processing
+
+- [ela](./Python%20Script/Image%20Processing/ela.py)
+
+### ImgToText (OCR)
+
+- [README](./Python%20Script/ImgToText%20%28OCR%29/README.md)
+- [black-out](./Python%20Script/ImgToText%20%28OCR%29/black-out.jpg)
+- [config](./Python%20Script/ImgToText%20%28OCR%29/config.py)
+- [git_remote_fixer](./Python%20Script/ImgToText%20%28OCR%29/git_remote_fixer.sh)
+- [main](./Python%20Script/ImgToText%20%28OCR%29/main.py)
+- [word](./Python%20Script/ImgToText%20%28OCR%29/word.py)
+
+#### utils
+
+- [colors](./Python%20Script/ImgToText%20%28OCR%29/utils/colors.py)
+- [file](./Python%20Script/ImgToText%20%28OCR%29/utils/file.py)
+- [misc](./Python%20Script/ImgToText%20%28OCR%29/utils/misc.py)
+- [path](./Python%20Script/ImgToText%20%28OCR%29/utils/path.py)
+
+### KeepToText
+
+- [README](./Python%20Script/KeepToText/README.md)
+- [keepToText](./Python%20Script/KeepToText/keepToText.py)
+
 ### Markdown
 
 - [dinamiclink_generator](./Python%20Script/Markdown/dinamiclink_generator.py)
 - [update_markdown_formats](./Python%20Script/Markdown/update_markdown_formats.py)
 - [ymarkdown_manager](./Python%20Script/Markdown/ymarkdown_manager.py)
+
+### Payload Dumper
+
+- [README](./Python%20Script/Payload%20Dumper/README.md)
+- [payload_dumper](./Python%20Script/Payload%20Dumper/payload_dumper.py)
+- [requirements](./Python%20Script/Payload%20Dumper/requirements.txt)
+- [update_metadata_pb2](./Python%20Script/Payload%20Dumper/update_metadata_pb2.py)
 
 ## Shell Script
 
@@ -135,11 +196,19 @@ Diller ile yazdığım scriptler.
 - [install_manager](./Shell%20Script/install_manager.sh)
 - [read_file](./Shell%20Script/read_file.sh)
 - [restore_local_folder](./Shell%20Script/restore_local_folder.sh)
+- [webapp_maker](./Shell%20Script/webapp_maker.sh)
 - [ywm](./Shell%20Script/ywm.sh)
+
+## Visual Basic Scripts
+
+- [hidden](./Visual%20Basic%20Scripts/hidden.vbs)
+- [invis](./Visual%20Basic%20Scripts/invis.vbs)
 
 ## docs
 
 - [ywm](./docs/ywm.md)
+
+## out
 
 <!--Index-->
 
