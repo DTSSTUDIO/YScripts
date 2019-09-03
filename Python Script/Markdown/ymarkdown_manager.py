@@ -327,7 +327,7 @@ def listfolderpaths(path: str = os.getcwd(), sort: bool = False, hidden: bool = 
     folderlist = []
     for name in os.listdir(path):
         # Gizli dizinleri atlama
-        if not hidden and name[0] == '.': 
+        if not hidden and name[0] == '.':
             continue
 
         pathname = os.path.join(path, name)
@@ -353,7 +353,7 @@ def listfilepaths(path: str = os.getcwd(), sort: bool = False, hidden: bool = Fa
     filelist = []
     for name in os.listdir(path):
         # Gizli dosyaları atlama
-        if not hidden and name[0] == '.': 
+        if not hidden and name[0] == '.':
             continue
 
         pathname = os.path.join(path, name)
@@ -806,7 +806,8 @@ def manager():
     insertfile(README_FILE, string, indicator)
 
     if dynamic_link:
-        apply_all_files(replace_static_links_from_file, sort=True, hidden=show_hidden)
+        apply_all_files(replace_static_links_from_file,
+                        sort=True, hidden=show_hidden)
 
     print("Updated! ~YEmreAk")
 
