@@ -25,3 +25,11 @@
 - [Python sessiz kurulumu](https://docs.python.org/3/using/windows.html)
 - [\Common was unexpected at this time](https://splogadev.wordpress.com/2012/07/03/common-was-unexpected-at-this-time/)
 - [Java for Mac](https://apple.stackexchange.com/questions/276772/how-to-install-java-using-terminal/276777)
+
+<!--Index-->
+
+## 📂 Harici Dosyalar
+
+- [Instabot.bat](./Instabot.bat)
+
+<!--Index-->

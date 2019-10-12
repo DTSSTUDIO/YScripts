@@ -30,3 +30,12 @@ python keepToText.py --encoding "utf-8-sig" --format Evernote takeout-20190630T0
 | CintaNotes | lxml, mako, python-dateutil |
 
 > İndirmek için: `python -m pip install <bağımlılık>`
+
+<!--Index-->
+
+## 📂 Harici Dosyalar
+
+- [.gitignore](./.gitignore)
+- [keepToText.py](./keepToText.py)
+
+<!--Index-->

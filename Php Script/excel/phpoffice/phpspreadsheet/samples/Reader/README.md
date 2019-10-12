@@ -1,0 +1,28 @@
+# Reader
+
+<!--Index-->
+
+## 📂 Harici Dosyalar
+
+- [01_Simple_file_reader_using_IOFactory.php](./01_Simple_file_reader_using_IOFactory.php)
+- [02_Simple_file_reader_using_a_specified_reader.php](./02_Simple_file_reader_using_a_specified_reader.php)
+- [03_Simple_file_reader_using_the_IOFactory_to_return_a_reader.php](./03_Simple_file_reader_using_the_IOFactory_to_return_a_reader.php)
+- [04_Simple_file_reader_using_the_IOFactory_to_identify_a_reader_to_use.php](./04_Simple_file_reader_using_the_IOFactory_to_identify_a_reader_to_use.php)
+- [05_Simple_file_reader_using_the_read_data_only_option.php](./05_Simple_file_reader_using_the_read_data_only_option.php)
+- [06_Simple_file_reader_loading_all_worksheets.php](./06_Simple_file_reader_loading_all_worksheets.php)
+- [07_Simple_file_reader_loading_a_single_named_worksheet.php](./07_Simple_file_reader_loading_a_single_named_worksheet.php)
+- [08_Simple_file_reader_loading_several_named_worksheets.php](./08_Simple_file_reader_loading_several_named_worksheets.php)
+- [09_Simple_file_reader_using_a_read_filter.php](./09_Simple_file_reader_using_a_read_filter.php)
+- [10_Simple_file_reader_using_a_configurable_read_filter.php](./10_Simple_file_reader_using_a_configurable_read_filter.php)
+- [11_Reading_a_workbook_in_chunks_using_a_configurable_read_filter_(version_1).php](./11_Reading_a_workbook_in_chunks_using_a_configurable_read_filter_%28version_1%29.php)
+- [12_Reading_a_workbook_in_chunks_using_a_configurable_read_filter_(version_2).php](./12_Reading_a_workbook_in_chunks_using_a_configurable_read_filter_%28version_2%29.php)
+- [13_Simple_file_reader_for_multiple_CSV_files.php](./13_Simple_file_reader_for_multiple_CSV_files.php)
+- [14_Reading_a_large_CSV_file_in_chunks_to_split_across_multiple_worksheets.php](./14_Reading_a_large_CSV_file_in_chunks_to_split_across_multiple_worksheets.php)
+- [15_Simple_file_reader_for_tab_separated_value_file_using_the_Advanced_Value_Binder.php](./15_Simple_file_reader_for_tab_separated_value_file_using_the_Advanced_Value_Binder.php)
+- [16_Handling_loader_exceptions_using_TryCatch.php](./16_Handling_loader_exceptions_using_TryCatch.php)
+- [17_Simple_file_reader_loading_several_named_worksheets.php](./17_Simple_file_reader_loading_several_named_worksheets.php)
+- [18_Reading_list_of_worksheets_without_loading_entire_file.php](./18_Reading_list_of_worksheets_without_loading_entire_file.php)
+- [19_Reading_worksheet_information_without_loading_entire_file.php](./19_Reading_worksheet_information_without_loading_entire_file.php)
+- [20_Reader_worksheet_hyperlink_image.php](./20_Reader_worksheet_hyperlink_image.php)
+
+<!--Index-->

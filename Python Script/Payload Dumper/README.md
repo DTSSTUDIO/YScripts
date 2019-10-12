@@ -18,3 +18,13 @@
 - Enter the following command: python -m pip install protobuf
 - When that’s finished, enter this command: python payload_dumper.py payload.bin
 - This will start to extract the images within the payload.bin file to the current folder you are in.
+
+<!--Index-->
+
+## 📂 Harici Dosyalar
+
+- [payload_dumper.py](./payload_dumper.py)
+- [requirements.txt](./requirements.txt)
+- [update_metadata_pb2.py](./update_metadata_pb2.py)
+
+<!--Index-->
