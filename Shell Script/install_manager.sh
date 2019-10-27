@@ -454,13 +454,12 @@ while true; do
                 read -p "- Fira Code indirmek ister misin? [y/n] " # -n 1 -r
                 case $REPLY in 
                     [Yy]* )  {
-                        wget "https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip" &> /dev/null
-                        unzip FiraCode_1.206.zip -d "./Fira Code 1.206" &> /dev/null
-                        rm FiraCode_1.206.zip &> /dev/null
-                        mv Fira\ Code\ 1.206/ $HOME/.fonts &> /dev/null
-                        fc-cache &> /dev/null
-                        
-                        echo "'Fira Code' adlı programlama fontun var, 'font.ligeratures' ayarını aktif etmeyi unutma 👨‍💻👩‍💻"
+                        wget -O firacode2.zip "https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip" &>/dev/null
+			unzip firacode2.zip -d "./Fira Code 2" &>/dev/null
+			rm firacode2.zip &>/dev/null
+			mv Fira\ Code\ 2/ $HOME/.fonts &>/dev/null
+			fc-cache &>/dev/null
+			echo "Fira Code 2 fontu kuruldu, 'font.ligeratures' ayarını aktif etmeyi unutma 🎉"
                         echo ""
                     };;
                     [Nn]* ) break;;
