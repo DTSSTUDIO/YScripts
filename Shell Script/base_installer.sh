@@ -110,12 +110,12 @@ sudo apt install -yf ./code.deb
 rm code.deb &>/dev/null
 echo "VsCode kuruldu, artık kodlayabilirsin 🎉"
 
-wget "https://github.com/tonsky/FiraCode/releases/download/1.206/FiraCode_1.206.zip" &>/dev/null
-unzip FiraCode_1.206.zip -d "./Fira Code 1.206" &>/dev/null
-rm FiraCode_1.206.zip &>/dev/null
-mv Fira\ Code\ 1.206/ $HOME/.fonts &>/dev/null
+wget -O firacode2.zip "https://github.com/tonsky/FiraCode/releases/download/2/FiraCode_2.zip" &>/dev/null
+unzip firacode2.zip -d "./Fira Code 2" &>/dev/null
+rm firacode2.zip &>/dev/null
+mv Fira\ Code\ 2/ $HOME/.fonts &>/dev/null
 fc-cache &>/dev/null
-echo "Fira Code fontu kuruldu, 'font.ligeratures' ayarını aktif etmeyi unutma 🎉"
+echo "Fira Code 2 fontu kuruldu, 'font.ligeratures' ayarını aktif etmeyi unutma 🎉"
 
 # OnlyOfficeDesktop paketinin indirilmesi
 wget -O "$HOME/Downloads/onlyofficedesktop.deb" https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb &>/dev/null
