@@ -1,6 +1,6 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance Force
-
+    
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -9,11 +9,21 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 iconPath = C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico
 IfExist %iconPath%
     Menu, Tray, Icon, %iconPath%, 1
+Menu, Tray, NoStandard
+Menu, Tray, Add, YEmreAk, IconClicked
+Menu, Tray, Add,
+Menu, Tray, Standard
+Menu, Tray, Default, YEmreAk
+return
+
+IconClicked:
+    Run, https://www.yemreak.com
+Return
 
 RunIfExist(url)
 {
     RunWait %url%
-    return
+return
 }
 
 ToogleTrayWithId(ahkId, mode=3)
@@ -30,8 +40,8 @@ ToogleTrayWithId(ahkId, mode=3)
     {
         WinHide
     }
-
-    return
+    
+return
 }
 
 ToggleWindow(windowName)
@@ -47,15 +57,15 @@ ToggleWindow(windowName)
         WinMinimize
         WinMinimize ; Tureng için 2 tane pencere açılıyor
     }
-
-    return
+    
+return
 }
 
 CreateWinByTrayWithClass(className, url, mode=3)
 {
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, On
-
+    
     found := False
     WinGet, id, list, ahk_class %className%
     Loop, %id%
@@ -66,14 +76,14 @@ CreateWinByTrayWithClass(className, url, mode=3)
             WinGetTitle, title
             If (title = "")
                 continue
-
+            
             ToogleTrayWithId(this_ID, mode)
             found := True
         }
     }
     If (!found)
         RunIfExist(url)
-    return
+        return
 }
 
 CreateWinByTray(windowName, url, mode=3)
@@ -88,22 +98,21 @@ CreateWinByTray(windowName, url, mode=3)
     else
     {
         RunIfExist(url)
-    }
-
-    return
+        }
+    
+return
 }
-
 
 CreateWin(windowName, url, mode=3)
 {
-
+    
     SetTitleMatchMode, %mode%
     IfWinExist, %windowName%
         ToggleWindow(windowName)
     else
         RunIfExist(url)
-
-    return
+        
+return
 }
 
 ;windowName=%A_ScriptName%ß
@@ -112,39 +121,39 @@ return
 ; Uygulama kısayolları Win ile başlar
 #w::
     CreateWinByTray("WhatsApp", "shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!WhatsAppDesktop")
-    return
+return
 #g::
     CreateWinByTray("GitHub Desktop", "C:\Users\Yedhrab\AppData\Local\GitHubDesktop\GitHubDesktop.exe")
-    return
+return
 #q::
     CreateWin("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
-    return
+return
 #t::
     CreateWin("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
-    return
+return
 #+t::
     CreateWin("Trello", "shell:appsFolder\45273LiamForsyth.PawsforTrello_7pb5ddty8z1pa!trello", 2)
-    return
+        return
 #e::
     CreateWinByTrayWithClass("CabinetWClass", "explorer.exe", 2)
-    return
+return
 
 ; Dizin kısayolları PgDn ile başlar
 PgDn & g::
     CreateWinByTray("GitHub", "C:\Users\Yedhrab\Documents\GitHub")
-    return
+return
 PgDn & s::
     CreateWinByTray("ShareX", "shell:appsFolder\19568ShareX.ShareX_egrzcvs15399j!ShareX", 2)
-    return
+return
 PgDn & Shift::
     CreateWinByTray("Startup", "shell:startup")
-    return
+return
 PgDn & i::
     CreateWinByTray("Icons", "C:\Users\Yedhrab\Google Drive\Pictures\Icons")
-    return
+return
 PgDn & d::
     CreateWinByTray("Downloads", "shell:downloads")
-    return
+return
 PgDn & u::
     CreateWinByTray("Yedhrab", "C:\Users\Yedhrab")
-    return
+return
