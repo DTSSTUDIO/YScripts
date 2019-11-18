@@ -131,11 +131,13 @@ return
 #t::
     CreateWin("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
 return
-#+t::
-    CreateWin("Trello", "shell:appsFolder\45273LiamForsyth.PawsforTrello_7pb5ddty8z1pa!trello", 2)
-        return
+
 #e::
     CreateWinByTrayWithClass("CabinetWClass", "explorer.exe", 2)
+return
+
+#F1::
+    CreateWinByTrayWithClass("CASCADIA_HOSTING_WINDOW_CLASS", "wt")
 return
 
 ; Dizin kısayolları PgDn ile başlar
