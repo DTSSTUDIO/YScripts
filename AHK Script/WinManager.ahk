@@ -22,7 +22,7 @@ Return
 
 RunIfExist(url)
 {
-    RunWait %url%
+    Run %url% ; Windows Terminalde sorun oluşturuyor
 return
 }
 
@@ -68,6 +68,31 @@ CreateWinByTrayWithClass(className, url, mode=3)
     
     found := False
     WinGet, id, list, ahk_class %className%
+    Loop, %id%
+    {
+        this_ID := id%A_Index%
+        IfWinExist ahk_id %this_ID%
+        {
+            WinGetTitle, title
+            If (title = "")
+                continue
+            
+            ToogleTrayWithId(this_ID, mode)
+            found := True
+        }
+    }
+    If (!found)
+        RunIfExist(url)
+        return
+}
+
+CreateWinByTrayWithExe(exeName, url, mode=3)
+{
+    SetTitleMatchMode, %mode%
+    DetectHiddenWindows, On
+    
+    found := False
+    WinGet, id, list, ahk_exe %exeName%
     Loop, %id%
     {
         this_ID := id%A_Index%
@@ -136,9 +161,9 @@ return
     CreateWinByTrayWithClass("CabinetWClass", "explorer.exe", 2)
 return
 
-#F1::
-    CreateWinByTrayWithClass("CASCADIA_HOSTING_WINDOW_CLASS", "wt")
-return
+; #F1::
+;     CreateWinByTrayWithExe("WindowsTerminal.exe", "wt")
+; return
 
 ; Dizin kısayolları PgDn ile başlar
 PgDn & g::
