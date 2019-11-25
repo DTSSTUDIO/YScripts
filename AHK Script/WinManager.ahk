@@ -147,18 +147,25 @@ return
 #w::
     CreateWinByTray("WhatsApp", "shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!WhatsAppDesktop")
 return
+
 #g::
     CreateWinByTray("GitHub Desktop", "C:\Users\Yedhrab\AppData\Local\GitHubDesktop\GitHubDesktop.exe")
 return
+
 #q::
     CreateWin("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
 return
+
 #t::
     CreateWin("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
 return
 
 #e::
     CreateWinByTrayWithClass("CabinetWClass", "explorer.exe", 2)
+return
+
+#c::
+    CreateWinByTray("Google Calendar", "C:\Users\Yedhrab\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Calendar.lnk", 2)
 return
 
 ; #F1::
