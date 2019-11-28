@@ -1,3 +1,5 @@
+; v1.1.31.01'de tüm desktoplarda çalışır
+
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 #SingleInstance Force
     
@@ -32,8 +34,10 @@ ToogleTrayWithId(ahkId, mode=3)
     DetectHiddenWindows, Off
     IfWinNotExist, ahk_id %ahkId%
     {
-        WinRestore
+        
+        DetectHiddenWindows, Off
         WinShow
+        WinRestore
         WinActivate
     }
     else
