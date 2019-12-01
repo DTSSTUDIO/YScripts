@@ -8,24 +8,101 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #Persistent
-iconPath = C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico
-IfExist %iconPath%
-    Menu, Tray, Icon, %iconPath%, 1
 Menu, Tray, NoStandard
 Menu, Tray, Add, YEmreAk, IconClicked
-Menu, Tray, Add,
-Menu, Tray, Standard
-Menu, Tray, Default, YEmreAk
+ResetMenuTray()
+
+; Gizlenmiş pencereler
+HidedWinId := []
+HidedWinTitle := []
+return
+
+MenuHandler:
+    For index, value in HidedWinTitle
+    {
+        If (value == A_ThisMenuItem)
+        {
+            ahkId := HidedWinId[index]
+            ShowFromTrayWıthId(ahkId)
+        }
+    }
 return
 
 IconClicked:
     Run, https://www.yemreak.com
 Return
 
+ResetMenuTray()
+{
+    iconPath = C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico
+    IfExist %iconPath%
+        Menu, Tray, Icon, %iconPath%, 1
+    Menu, Tray, Default, YEmreAk
+return
+}
+
 RunIfExist(url)
 {
     Run %url% ; Windows Terminalde sorun oluşturuyor
 return
+}
+
+AppendToMenu(title, path)
+{
+    Menu, Tray, Add, %title%, MenuHandler
+    Menu, Tray, Default, %title%
+    IfExist %path%
+        Menu, Tray, Icon, %path%, 1
+return
+}
+
+RemoveFromMenu(title)
+{
+    Menu, Tray, Delete, %title%
+return
+}
+
+KeepInMem(ahkId, title, activePath)
+{
+    global HidedWinId, HidedWinTitle
+    HidedWinId.Push(ahkId)
+    HidedWinTitle.Push(title)
+    AppendToMenu(title, activePath)
+return
+}
+
+RemoveFromMem(ahkId, title)
+{
+    global HidedWinID, HidedWinTitle
+    For index, value in HidedWinId
+    {
+        if(value == ahkId)
+        {
+            HidedWinId.RemoveAt(index)
+            HidedWinTitle.RemoveAt(index)
+            RemoveFromMenu(title)
+            break
+        }
+    }
+    
+    if (HidedWinId.Length() == 0)
+    {
+        ResetMenuTray()
+    }
+return
+}
+
+ShowFromTrayWıthId(ahkId)
+{
+    WinRestore, ahk_id %ahkId%
+    WinShow, ahk_id %ahkId%
+    
+    WinActivate, ahk_id %ahkId%
+    WinWaitActive, ahk_id %ahkId%
+    
+    WinGetActiveTitle, title
+    
+    RemoveFromMem(ahkId, title)
 }
 
 ToogleTrayWithId(ahkId, mode=3)
@@ -34,16 +111,24 @@ ToogleTrayWithId(ahkId, mode=3)
     DetectHiddenWindows, Off
     IfWinNotExist, ahk_id %ahkId%
     {
-        
-        DetectHiddenWindows, Off
-        WinShow
-        WinRestore
-        WinActivate
+        ShowFromTrayWıthId(ahkId)
     }
     else
     {
-        WinHide
-        Send, !{Esc} ; Bir önceki pencereye odaklanma
+        IfWinActive, ahk_id %ahkId%
+        {
+            WinGetActiveTitle, title
+            WinGet, activePath, ProcessPath, A
+            
+            SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
+            WinHide, ahk_id %ahkId%
+            
+            KeepInMem(ahkId, title, activePath)
+        }
+        else
+        {
+            WinActivate ahk_id %ahkId%
+        }
     }
     
 return
@@ -54,18 +139,25 @@ ToggleWindow(windowName)
     WinGet, WinState, MinMax, %windowName%
     if (WinState == -1)
     {
-        WinRestore
-        WinActivate
+        WinRestore, %windowName%
+        WinActivate, %windowName%
     }
     else
     {
-        WinMinimize
-        
-        ; Tureng için 2 tane pencere açılıyor
-        if(windowName = "Tureng Dictionary")
+        IfWinActive, %windowName%
         {
-            WinMinimize %windowName%
+            WinMinimize, %windowName%
+            ; Tureng için 2 tane pencere açılıyor
+            if(windowName = "Tureng Dictionary")
+            {
+                WinMinimize, %windowName%
+            }
         }
+        else
+        {
+            WinActivate, %windowName%
+        }
+        
     }
     
 return
