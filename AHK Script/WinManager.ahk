@@ -43,6 +43,7 @@ ToogleTrayWithId(ahkId, mode=3)
     else
     {
         WinHide
+        Send, !{Esc} ; Bir önceki pencereye odaklanma
     }
     
 return
@@ -59,7 +60,12 @@ ToggleWindow(windowName)
     else
     {
         WinMinimize
-        WinMinimize ; Tureng için 2 tane pencere açılıyor
+        
+        ; Tureng için 2 tane pencere açılıyor
+        if(windowName = "Tureng Dictionary")
+        {
+            WinMinimize %windowName%
+        }
     }
     
 return
@@ -194,4 +200,13 @@ PgDn & d::
 return
 PgDn & u::
     CreateWinByTray("Yedhrab", "C:\Users\Yedhrab")
+return
+
+; Sık kullanılan karakterler de artık PgUp butonu ile çalışacaktır
+
+Control & PgDn::
+    Send , !{PgDn}
+return
+Control & PgUp::
+    Send , !{PgUp}
 return
