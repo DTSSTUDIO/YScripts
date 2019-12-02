@@ -9,23 +9,36 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #MaxThreadsPerHotkey, 1 ; no re-entrant hotkey handling
 
-#Persistent
-Menu, Tray, NoStandard
-Menu, Tray, Add, YEmreAk, IconClicked
-Menu, Tray, Default, YEmreAk
-
 ; Gizlenmiş pencelerin ID'si
-HidedWindows := [{}]
+HidedWindows := []
+
+UpdateMenu()
 return
 
 IconClicked:
-    Run, https://www.yemreak.com
+    onMenuItemClick(A_ThisMenuItem)
 Return
 
 class MenuObject {
     ahkID := 0
     title := ""
     iconPath := ""
+}
+
+onMenuItemClick(menuName) {
+    found := False
+    
+    global HidedWindows
+    For index, item in HidedWindows {
+        if (item.title == menuName) {
+            ToggleWindowWithID(item.ahkID, True)
+            found := True
+            break
+        }
+    }
+    
+    if !found
+        Run https://www.yemreak.com
 }
 
 RunUrl(url) {
@@ -78,6 +91,31 @@ KeepActiveWindowInMem() {
     KeepInMem(ahkID, title, iconPath)
 }
 
+UpdateMenu(){
+    #Persistent
+    Menu, Tray, NoStandard
+    Menu, Tray, Add, YEmreAk, IconClicked
+    
+    global HidedWindows
+    if (HidedWindows.Length() > 0) {
+        iconPath := HidedWindows[HidedWindows.Length()].iconPath
+        mainTitle := HidedWindows[HidedWindows.Length()].title
+        
+        For index, item in HidedWindows {
+            title := item.title
+            Menu, Tray, Add, %title%, IconClicked
+        }
+    } else {
+        iconPath := "C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico"
+        mainTitle := "YEmreAk"
+    }
+    
+    if FileExist(iconPath) {
+        Menu, Tray, Icon, %iconPath%, 1
+    }
+    Menu, Tray, Default, %mainTitle%
+}
+
 SendActiveWindowToTray() {
     WinHide, A
 }
@@ -87,19 +125,19 @@ RestoreFocus() {
     ; Eğer uyarı mesajı verilirse, odaklanma bozuluyor
 }
 
-ToggleWindowWithID(ahkID, mode=3, hide=False) {
-    SetTitleMatchMode, %mode%
+ToggleWindowWithID(ahkID, hide=False) {
     DetectHiddenWindows, Off
-    
     if !WinExist("ahk_id" . ahkID) {
         ShowHidedWindowWithID(ahkID)
         ActivateWindowWithID(ahkID)
         DropActiveWindowFromMem()
+        UpdateMenu()
     } else {
         if WinActive("ahk_id" . ahkID) {
             if hide {
                 KeepActiveWindowInMem()
                 SendActiveWindowToTray()
+                UpdateMenu()
             }
             RestoreFocus()
         } else {
@@ -115,7 +153,7 @@ OpenWindowByTitleInTray(windowName, url, mode=3) {
     
     if WinExist(windowName) {
         WinGet, ahkID, ID, %windowName%
-        ToggleWindowWithID(ahkID, mode, True)
+        ToggleWindowWithID(ahkID, True)
     } else {
         RunUrl(url)
     }
@@ -135,7 +173,7 @@ OpenWindowByClassInTray(className, url, mode=3) {
             if (title == "")
                 continue
             
-            ToggleWindowWithID(ahkID, mode, True)
+            ToggleWindowWithID(ahkID, True)
             found := True
         }
     }
