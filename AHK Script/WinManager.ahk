@@ -10,14 +10,36 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #Persistent
 Menu, Tray, NoStandard
 Menu, Tray, Add, YEmreAk, IconClicked
-ResetMenuTray()
+Menu, Tray, Add, Temizle, ClearAll
+Menu, Tray, Add, Kapat, CloseApp
 
 ; Gizlenmiş pencereler
+HidedCount := 0
+KnownIds := []
 HidedWinId := []
 HidedWinTitle := []
+HidedWinIconPath := []
+
+UpdateTrayMenu()
+return
+
+ClearAll:
+    global HidedWinId, HidedCount
+    Loop, %HidedCount%
+    {
+        ahkID := HidedWinId[HidedCount]
+        ShowFromTrayWıthId(ahkID)
+        WinClose, ahk_id %ahkID%
+    }
+return
+
+CloseApp:
+    ReleaseAllWindows()
+    ExitApp
 return
 
 MenuHandler:
+    global HidedWinId, HidedWinTitle
     For index, value in HidedWinTitle
     {
         If (value == A_ThisMenuItem)
@@ -32,62 +54,139 @@ IconClicked:
     Run, https://www.yemreak.com
 Return
 
-ResetMenuTray()
+ReleaseAllWindows()
+{
+    global KnownIds, HidedWinId, HidedCount
+    
+    Loop, %HidedCount%
+        ShowFromTrayWıthId(HidedWinId[HidedCount])
+}
+
+CaptureKnowedWindows()
+{
+    global KnownIds, HidedWinId, HidedWinTitle, HidedWinIconPath
+    DetectHiddenWindows, Off
+    
+    For index, value in KnownIds
+    {
+        IfWinExist, ahk_id %value%
+        {
+            WinRestore, ahk_id %value%
+            WinActivate, ahk_id %value%
+            WinWaitActive, ahk_id %value% ; Ekrana odaklanmadan gelirse hata verir
+            KeepActivatedWindowInTray()
+        }
+    }
+}
+
+UpdateTrayMenu(index = 0)
 {
     iconPath = C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico
+    title = YEmreAk
+    
+    global HidedCount
+    if (HidedCount != 0)
+    {
+        if (index == 0)
+            index = HidedCount
+        
+        global HidedWinTitle, HidedWinIconPath
+        iconPath := HidedWinIconPath[index]
+        title := HidedWinTitle[index]
+    }
+    
     IfExist %iconPath%
         Menu, Tray, Icon, %iconPath%, 1
-    Menu, Tray, Default, YEmreAk
+    Menu, Tray, Default, %title%
+    Menu, Tray, Delete, Kapat
+    Menu, Tray, Delete, Temizle
+    Menu, Tray, Add, Temizle, ClearAll
+    Menu, Tray, Add, Kapat, CloseApp
 return
 }
 
 RunIfExist(url)
 {
-    Run %url% ; Windows Terminalde sorun oluşturuyor
-return
+    Run, %url%, , , ahkPID
+    ; WinActivate, ahk_pid ahkPID
+    ; WinWaitActive, ahk_pid ahkPID
+    ; WinGet, ahkID, ID, A
+    ; AppendToKnownIds(ahkID)
 }
 
-AppendToMenu(title, path)
+AppendToKnownIds(ahkId)
 {
-    Menu, Tray, Add, %title%, MenuHandler
-    Menu, Tray, Default, %title%
-    IfExist %path%
-        Menu, Tray, Icon, %path%, 1
-return
+    global KnownIds
+    
+    save := True
+    For index, value in KnownIds
+    {
+        if (value == ahkId)
+        {
+            save := False
+            break
+        }
+    }
+    if (save)
+        KnownIds.Push(ahkId)
 }
 
-RemoveFromMenu(title)
+AppendToArray(ahkId, title, iconPath)
 {
-    Menu, Tray, Delete, %title%
-return
-}
-
-KeepInMem(ahkId, title, activePath)
-{
-    global HidedWinId, HidedWinTitle
+    global HidedWinId, HidedWinTitle, HidedWinIconPath, HidedCount
     HidedWinId.Push(ahkId)
     HidedWinTitle.Push(title)
-    AppendToMenu(title, activePath)
-return
+    HidedWinIconPath.Push(iconPath)
+    HidedCount++
+    
+return HidedCount ; Diziler 1'den başlar
 }
 
-RemoveFromMem(ahkId, title)
+AppendToMenu(index)
 {
-    global HidedWinID, HidedWinTitle
+    global HidedWinTitle
+    title := HidedWinTitle[index]
+    
+    Menu, Tray, Add, %title%, MenuHandler
+}
+
+KeepInMem(ahkId, title, iconPath)
+{
+    index := AppendToArray(ahkId, title, iconPath)
+    AppendToMenu(index)
+    UpdateTrayMenu(index)
+}
+
+RemoveFromArray(index)
+{
+    global HidedWinId, HidedWinTitle, HidedWinIconPath, HidedCount
+    HidedWinId.RemoveAt(index)
+    HidedWinTitle.RemoveAt(index)
+    HidedWinIconPath.RemoveAt(index)
+    HidedCount--
+    
+return HidedCount ; Diziler 1'den başlar
+}
+
+RemoveFromMenu(index)
+{
+    global HidedWinTitle
+    title := HidedWinTitle[index]
+    Menu, Tray, Delete, %title%
+}
+
+RemoveFromMem(ahkId)
+{
+    global HidedWinId
     For index, value in HidedWinId
     {
         if(value == ahkId)
         {
-            HidedWinId.RemoveAt(index)
-            HidedWinTitle.RemoveAt(index)
-            RemoveFromMenu(title)
+            RemoveFromMenu(index)
+            RemoveFromArray(index)
+            UpdateTrayMenu(index - 1)
             break
         }
-    }
-    
-    if (HidedWinId.Length() == 0)
-    {
-        ResetMenuTray()
     }
 return
 }
@@ -100,9 +199,23 @@ ShowFromTrayWıthId(ahkId)
     WinActivate, ahk_id %ahkId%
     WinWaitActive, ahk_id %ahkId%
     
+    RemoveFromMem(ahkId)
+    AppendToKnownIds(ahkId)
+}
+
+KeepActivatedWindowInTray()
+{
     WinGetActiveTitle, title
+    WinGet, ahkId, ID, A
+    WinGet, iconPath, ProcessPath, A
     
-    RemoveFromMem(ahkId, title)
+    WinHide, A
+    KeepInMem(ahkId, title, iconPath)
+}
+
+RestoreFocus()
+{
+    SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
 }
 
 ToogleTrayWithId(ahkId, mode=3)
@@ -110,28 +223,17 @@ ToogleTrayWithId(ahkId, mode=3)
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, Off
     IfWinNotExist, ahk_id %ahkId%
-    {
         ShowFromTrayWıthId(ahkId)
-    }
     else
     {
         IfWinActive, ahk_id %ahkId%
         {
-            WinGetActiveTitle, title
-            WinGet, activePath, ProcessPath, A
-            
-            SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
-            WinHide, ahk_id %ahkId%
-            
-            KeepInMem(ahkId, title, activePath)
+            KeepActivatedWindowInTray()
+            RestoreFocus()
         }
         else
-        {
             WinActivate ahk_id %ahkId%
-        }
     }
-    
-return
 }
 
 ToggleWindow(windowName)
@@ -182,6 +284,7 @@ CreateWinByTrayWithClass(className, url, mode=3)
             ToogleTrayWithId(this_ID, mode)
             found := True
         }
+        
     }
     If (!found)
         RunIfExist(url)
@@ -210,7 +313,8 @@ CreateWinByTrayWithExe(exeName, url, mode=3)
     }
     If (!found)
         RunIfExist(url)
-        return
+        
+return
 }
 
 CreateWinByTray(windowName, url, mode=3)
@@ -273,6 +377,14 @@ return
 ; #F1::
 ;     CreateWinByTrayWithExe("WindowsTerminal.exe", "wt")
 ; return
+
+PgUp & e::
+    ReleaseAllWindows()
+return
+
+PgUp & d::
+    CaptureKnowedWindows()
+return
 
 ; Dizin kısayolları PgDn ile başlar
 PgDn & g::
