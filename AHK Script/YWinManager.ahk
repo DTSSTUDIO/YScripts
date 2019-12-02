@@ -29,6 +29,11 @@ ShowHidedWindowWithID(ahkId)
     WinShow, ahk_id %ahkID%
 }
 
+SendActiveWindowToTray()
+{
+    WinHide, A
+}
+
 RestoreFocus()
 {
     SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
@@ -49,6 +54,9 @@ ToggleWindowWithID(ahkID, mode=3, hide=False)
     {
         IFWinActive, ahk_id %ahkID%
         {
+            if (hide)
+                SendActiveWindowToTray()
+            
             RestoreFocus()
         }
         else
@@ -66,7 +74,7 @@ OpenWindowByTitleInTray(windowName, url, mode=3)
     IFWinExist, %windowName%
     {
         WinGet, ahkID, ID, %windowName%
-        ToggleWindowWithID(ahkID, mode)
+        ToggleWindowWithID(ahkID, mode, True)
     }
     else
     {
@@ -91,7 +99,7 @@ OpenWindowByClassInTray(className, url, mode=3)
             if (title == "")
                 continue
             
-            ToggleWindowWithID(ahkID, mode)
+            ToggleWindowWithID(ahkID, mode, True)
             found := True
         }
     }
