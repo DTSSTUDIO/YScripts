@@ -9,8 +9,18 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 #MaxThreadsPerHotkey, 1 ; no re-entrant hotkey handling
 
+#Persistent
+Menu, Tray, NoStandard
+Menu, Tray, Add, YEmreAk, IconClicked
+Menu, Tray, Default, YEmreAk
+
 ; Gizlenmiş pencelerin ID'si
 HidedWindows := [{}]
+return
+
+IconClicked:
+    Run, https://www.yemreak.com
+Return
 
 class MenuObject {
     ahkID := 0
