@@ -10,15 +10,17 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxThreadsPerHotkey, 1 ; no re-entrant hotkey handling
 
 ; Gizlenmiş pencelerin ID'si
-HidedWindows := []
+HidedWindows := [{}]
 
-RunUrl(url)
-{
+class MenuObject {
+    
+}
+
+RunUrl(url) {
     Run, %url%
 }
 
-ActivateWindowWithID(ahkID)
-{
+ActivateWindowWithID(ahkID) {
     WinActivate, ahk_id %ahkID%
     WinWaitActive, ahk_id %ahkID%
 }
@@ -29,72 +31,57 @@ ShowHidedWindowWithID(ahkId)
     WinShow, ahk_id %ahkID%
 }
 
-SendActiveWindowToTray()
-{
+SendActiveWindowToTray() {
     WinHide, A
 }
 
-RestoreFocus()
-{
+RestoreFocus() {
     SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
 }
 
-ToggleWindowWithID(ahkID, mode=3, hide=False)
-{
+ToggleWindowWithID(ahkID, mode=3, hide=False) {
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, Off
     
-    IfWinNotExist, ahk_id %ahkID%
-    {
+    if !WinExist("ahk_id" . ahkID) {
         ShowHidedWindowWithID(ahkID)
         ActivateWindowWithID(ahkID)
         ; Hafızaya ekleme işlemleri
-    }
-    else
-    {
-        IFWinActive, ahk_id %ahkID%
-        {
+    } else {
+        if WinActive("ahk_id" . ahkID) {
             if (hide)
                 SendActiveWindowToTray()
             
             RestoreFocus()
-        }
-        else
-        {
+        } else {
             ActivateWindowWithID(ahkID)
         }
     }
 }
 
 ; Pencereleri gizlenebilir modda açma
-OpenWindowByTitleInTray(windowName, url, mode=3)
-{
+OpenWindowByTitleInTray(windowName, url, mode=3) {
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, On
-    IFWinExist, %windowName%
-    {
+    
+    if WinExist(windowName) {
         WinGet, ahkID, ID, %windowName%
         ToggleWindowWithID(ahkID, mode, True)
-    }
-    else
-    {
+    } else {
         RunUrl(url)
     }
     
 }
 
-OpenWindowByClassInTray(className, url, mode=3)
-{
+OpenWindowByClassInTray(className, url, mode=3) {
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, On
     
     found := False
     WinGet, IDlist, list, ahk_class %className%
-    Loop, %IDlist%
-    {
+    Loop, %IDlist% {
         ahkID := IDlist%A_INDEX%
-        IFWinExist, ahk_id %ahkID%
-        {
+        if WinExist("ahk_id" . ahkID) {
             WinGetTitle, title
             if (title == "")
                 continue
