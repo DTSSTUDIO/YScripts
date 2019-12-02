@@ -13,7 +13,9 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 HidedWindows := [{}]
 
 class MenuObject {
-    
+    ahkID := 0
+    title := ""
+    iconPath := ""
 }
 
 RunUrl(url) {
@@ -31,12 +33,48 @@ ShowHidedWindowWithID(ahkId)
     WinShow, ahk_id %ahkID%
 }
 
+DropFromMem(ahkID){
+    global HidedWindows
+    For index, item in HidedWindows {
+        if (item.ahkID == ahkID){
+            HidedWindows.RemoveAt(index)
+        }
+    }
+}
+
+DropActiveWindowFromMem(){
+    WinGet, ahkID, ID, A
+    
+    DropFromMem(ahkID)
+}
+
+KeepInMem(ahkID, title, iconPath) {
+    item := new MenuObject
+    
+    item.ahkID := ahkID
+    item.title := title
+    item.iconPath := iconPath
+    
+    global HidedWindows
+    HidedWindows.Push(item)
+}
+
+; Gizlenmeden önce kullanılmazsa id alamaz
+KeepActiveWindowInMem() {
+    WinGetActiveTitle, title
+    WinGet, ahkID, ID, A
+    WinGet, iconPath, ProcessPath, A
+    
+    KeepInMem(ahkID, title, iconPath)
+}
+
 SendActiveWindowToTray() {
     WinHide, A
 }
 
 RestoreFocus() {
     SendEvent, !{Esc} ; Bir önceki pencereye odaklanma
+    ; Eğer uyarı mesajı verilirse, odaklanma bozuluyor
 }
 
 ToggleWindowWithID(ahkID, mode=3, hide=False) {
@@ -46,12 +84,13 @@ ToggleWindowWithID(ahkID, mode=3, hide=False) {
     if !WinExist("ahk_id" . ahkID) {
         ShowHidedWindowWithID(ahkID)
         ActivateWindowWithID(ahkID)
-        ; Hafızaya ekleme işlemleri
+        DropActiveWindowFromMem()
     } else {
         if WinActive("ahk_id" . ahkID) {
-            if (hide)
+            if hide {
+                KeepActiveWindowInMem()
                 SendActiveWindowToTray()
-            
+            }
             RestoreFocus()
         } else {
             ActivateWindowWithID(ahkID)
@@ -90,7 +129,7 @@ OpenWindowByClassInTray(className, url, mode=3) {
             found := True
         }
     }
-    if (!found)
+    if !found
         RunUrl(url)
 }
 
