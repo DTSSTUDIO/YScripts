@@ -193,8 +193,10 @@ ToggleWindowWithID(ahkID, hide=False) {
                 KeepActiveWindowInMem()
                 SendActiveWindowToTray()
                 UpdateMenu()
+                RestoreFocus()
+            } else {
+                WinMinimize, A
             }
-            RestoreFocus()
         } else {
             ActivateWindowWithID(ahkID)
         }
@@ -236,7 +238,7 @@ OpenWindowByClassInTray(className, url, mode=3) {
         RunUrl(url)
 }
 
-OpenWindowByClass(className, url, mode=3) {
+OpenWindowByTitle(className, url, mode=3) {
     SetTitleMatchMode, %mode%
     DetectHiddenWindows, Off
     
@@ -256,11 +258,11 @@ OpenWindowByClass(className, url, mode=3) {
 
 ; ---------------------------------- Göster / Gizle ----------------------------------
 #q::
-    OpenWindowByClass("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
+    OpenWindowByTitle("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
 return
 
 #t::
-    OpenWindowByClass("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
+    OpenWindowByTitle("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
 return
 
 ; --------------------------------- Tray Kısayolları ---------------------------------
