@@ -16,7 +16,16 @@ UpdateMenu()
 return
 
 IconClicked:
-    onMenuItemClick(A_ThisMenuItem)
+    ToggleMemWindowWithTitle(A_ThisMenuItem)
+Return
+
+ClearAll:
+    ClearAllHidedWindows()
+Return
+
+CloseApp:
+    ClearAllHidedWindows()
+    ExitApp
 Return
 
 class MenuObject {
@@ -25,19 +34,48 @@ class MenuObject {
     iconPath := ""
 }
 
-onMenuItemClick(menuName) {
-    found := False
-    
+ClearAllHidedWindows() {
+    ahkIDs := GetHidedWindowsIDs()
+    For index, ahkID in ahkIDs {
+        ToggleWindowWithID(ahkID, True)
+        WinKill, ahk_id %ahkID%
+    }
+}
+
+GetHidedWindowsIDs(){
+    ahkIDs := []
     global HidedWindows
     For index, item in HidedWindows {
-        if (item.title == menuName) {
-            ToggleWindowWithID(item.ahkID, True)
-            found := True
-            break
+        ahkIDs.Push(item.ahkID)
+    }
+return ahkIDs
+}
+
+GetHidedWindowsIDWithTitle(title){
+    global HidedWindows
+    For index, item in HidedWindows {
+        if (item.title == title) {
+            return item.ahkID
         }
     }
-    
-    if !found
+return 0
+}
+
+GetHidedWindowsIndexWithID(ahkID){
+    global HidedWindows
+    For index, item in HidedWindows {
+        if (item.ahkID == ahkID) {
+            return index
+        }
+    }
+return 0
+}
+
+ToggleMemWindowWithTitle(menuName) {
+    ahkID := GetHidedWindowsIDWithTitle(menuName)
+    if ahkID
+        ToggleWindowWithID(ahkID, True)
+    else
         Run https://www.yemreak.com
 }
 
@@ -57,18 +95,26 @@ ShowHidedWindowWithID(ahkId)
 }
 
 DropFromMem(ahkID){
-    global HidedWindows
-    For index, item in HidedWindows {
-        if (item.ahkID == ahkID){
-            HidedWindows.RemoveAt(index)
-        }
+    index := GetHidedWindowsIndexWithID(ahkID)
+    if index {
+        global HidedWindows
+        HidedWindows.RemoveAt(index)
     }
+return index
+}
+
+DropActiveWindowFromTrayMenu(){
+    WinGetTitle, title, A
+    Menu, Tray, Delete, %title%
+    global HidedWindows
+    if !HidedWindows.Length()
+        Menu, Tray, Delete, Temizle
 }
 
 DropActiveWindowFromMem(){
     WinGet, ahkID, ID, A
     
-    DropFromMem(ahkID)
+return DropFromMem(ahkID)
 }
 
 KeepInMem(ahkID, title, iconPath) {
@@ -98,6 +144,10 @@ UpdateMenu(){
     
     global HidedWindows
     if (HidedWindows.Length() > 0) {
+        Menu, Tray, Add, Temizle, ClearAll
+        Menu, Tray, Delete, Temizle
+        Menu, Tray, Delete, Kapat
+        
         iconPath := HidedWindows[HidedWindows.Length()].iconPath
         mainTitle := HidedWindows[HidedWindows.Length()].title
         
@@ -105,6 +155,8 @@ UpdateMenu(){
             title := item.title
             Menu, Tray, Add, %title%, IconClicked
         }
+        
+        Menu, Tray, Add, Temizle, ClearAll
     } else {
         iconPath := "C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico"
         mainTitle := "YEmreAk"
@@ -114,10 +166,12 @@ UpdateMenu(){
         Menu, Tray, Icon, %iconPath%, 1
     }
     Menu, Tray, Default, %mainTitle%
+    Menu, Tray, Add, Kapat, CloseApp
 }
 
 SendActiveWindowToTray() {
     WinHide, A
+    WinWaitNotActive, A
 }
 
 RestoreFocus() {
@@ -130,7 +184,8 @@ ToggleWindowWithID(ahkID, hide=False) {
     if !WinExist("ahk_id" . ahkID) {
         ShowHidedWindowWithID(ahkID)
         ActivateWindowWithID(ahkID)
-        DropActiveWindowFromMem()
+        if DropActiveWindowFromMem()
+            DropActiveWindowFromTrayMenu()
         UpdateMenu()
     } else {
         if WinActive("ahk_id" . ahkID) {
