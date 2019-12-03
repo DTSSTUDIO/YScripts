@@ -233,8 +233,7 @@ OpenWindowByTitleInTray(windowName, url, mode=3) {
     
 }
 
-OpenWindowByClassInTray(className, url, mode=3) {
-    SetTitleMatchMode, %mode%
+OpenWindowByClassInTray(className, url) {
     DetectHiddenWindows, On
     
     found := False
@@ -266,6 +265,12 @@ OpenWindowByTitle(className, url, mode=3) {
     }
 }
 
+GetEnvPath(envvar, path=""){
+    EnvGet, prepath, %envvar%
+    path = %prepath%%path%
+return path
+}
+
 ; ####################################################################################
 ; ##                                                                                ##
 ; ##                                   KISAYOLLAR                                   ##
@@ -274,53 +279,95 @@ OpenWindowByTitle(className, url, mode=3) {
 
 ; ---------------------------------- Göster / Gizle ----------------------------------
 #q::
-    OpenWindowByTitle("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
+    name := "Clockify"
+    path := "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim"
+    mode := 2
+    OpenWindowByTitle(name, path, mode)
 return
 
 #t::
-    OpenWindowByTitle("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
+    name := "Tureng Dictionary"
+    path := "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App"
+    mode := 2
+    OpenWindowByTitleInTray(name, path, mode)
 return
 
 ; --------------------------------- Tray Kısayolları ---------------------------------
 
 #w::
-    OpenWindowByTitleInTray("WhatsApp", "shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!WhatsAppDesktop")
+    name := "WhatsApp"
+    path := "shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!WhatsAppDesktop"
+    mode := 2
+    OpenWindowByTitleInTray(name, path, mode)
 return
 
 #g::
-    OpenWindowByTitleInTray("GitHub Desktop", "C:\Users\Yedhrab\AppData\Local\GitHubDesktop\GitHubDesktop.exe")
+    name := "GitHub Desktop"
+    path := GetEnvPath("localappdata", "\GitHubDesktop\GitHubDesktop.exe")
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
 
 #c::
-    OpenWindowByTitleInTray("Clockify", "C:\Users\Yedhrab\AppData\Local\Programs\Clockify\Clockify.exe", 2)
-        return
-    
+    name := "Clockify"
+    path := GetEnvPath("localappdata", "\Programs\Clockify\Clockify.exe")
+    mode := 2
+    OpenWindowByTitleInTray(name, path, mode)
+return
+
 #x::
-    OpenWindowByTitleInTray("Google Calendar", "C:\Users\Yedhrab\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Calendar.lnk", 2)
+    name := "Google Calendar"
+    path := GetEnvPath("appdata", "\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Calendar.lnk")
+    mode := 2
+    OpenWindowByTitleInTray(name, path, mode)
 return
 
 #e::
-    OpenWindowByClassInTray("CabinetWClass", "explorer.exe", 2)
+    name := "CabinetWClass"
+    path := "explorer.exe"
+    OpenWindowByClassInTray(name, path)
 return
 
 ; Dizin kısayolları PgDn ile başlar
 PgDn & g::
-    OpenWindowByTitleInTray("GitHub", "C:\Users\Yedhrab\Documents\GitHub")
+    name := "GitHub"
+    path := GetEnvPath("userprofile", "\Documents\GitHub")
+    OpenWindowByTitleInTray(name, path)
 return
+
 PgDn & s::
-    OpenWindowByTitleInTray("ShareX", "shell:appsFolder\19568ShareX.ShareX_egrzcvs15399j!ShareX", 2)
+    name := "ShareX"
+    path := "shell:appsFolder\19568ShareX.ShareX_egrzcvs15399j!ShareX"
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
+
 PgDn & Shift::
-    OpenWindowByTitleInTray("Startup", "shell:startup")
+    name := "Startup"
+    path := "shell:startup"
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
+
 PgDn & i::
-    OpenWindowByTitleInTray("Icons", "C:\Users\Yedhrab\Google Drive\Pictures\Icons")
+    name := "Icons"
+    path := GetEnvPath("userprofile", "\Google Drive\Pictures\Icons")
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
+
 PgDn & d::
-    OpenWindowByTitleInTray("Downloads", "shell:downloads")
+    name := "Downloads"
+    path := "shell:downloads"
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
+
 PgDn & u::
-    OpenWindowByTitleInTray("Yedhrab", "C:\Users\Yedhrab")
+    name := "Yunus Emre Ak"
+    path := GetEnvPath("userprofile")
+    mode := 3
+    OpenWindowByTitleInTray(name, path, mode)
 return
 
 ; --------------------------------- Buton Kısayolları ---------------------------------
