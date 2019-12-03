@@ -236,7 +236,34 @@ OpenWindowByClassInTray(className, url, mode=3) {
         RunUrl(url)
 }
 
-; ------------------------- Kısayollar -------------------------
+OpenWindowByClass(className, url, mode=3) {
+    SetTitleMatchMode, %mode%
+    DetectHiddenWindows, Off
+    
+    if WinExist(className) {
+        WinGet, ahkID, ID, %className%
+        ToggleWindowWithID(ahkID, False)
+    } else {
+        RunUrl(url)
+    }
+}
+
+; ####################################################################################
+; ##                                                                                ##
+; ##                                   KISAYOLLAR                                   ##
+; ##                                                                                ##
+; ####################################################################################
+
+; ---------------------------------- Göster / Gizle ----------------------------------
+#q::
+    OpenWindowByClass("- OneNote", "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim", 2)
+return
+
+#t::
+    OpenWindowByClass("Tureng Dictionary", "shell:appsFolder\24232AlperOzcetin.Tureng_9n2ce2f97t3e6!App")
+return
+
+; --------------------------------- Tray Kısayolları ---------------------------------
 
 #w::
     OpenWindowByTitleInTray("WhatsApp", "shell:appsFolder\5319275A.WhatsAppDesktop_cv1g1gvanyjgm!WhatsAppDesktop")
@@ -273,6 +300,8 @@ return
 PgDn & u::
     OpenWindowByTitleInTray("Yedhrab", "C:\Users\Yedhrab")
 return
+
+; --------------------------------- Buton Kısayolları ---------------------------------
 
 ; Değiştirilen butonları kurtarma
 Control & PgDn::
