@@ -1,5 +1,7 @@
 # 👨‍💼 YWinManager
 
+📢 Bu çalışma artık [YHotkeys](https://github.com/yedhrab/YHotkeys) adı altında devam etmektedir
+
 ## 👁‍🗨 Uygulamaya Bakış
 
 ![](../res/usage.gif)
@@ -48,17 +50,27 @@
 | <kbd>✲ Ctrl</kbd> <kbd>PgDn</kbd> | Page Down   |
 | <kbd>✲ Ctrl</kbd> <kbd>PgUp</kbd> | Page Up     |
 
+## 🚩 Scriptleri System ile Başlatma
+
+- 🖤 Scriptinizin **kısayolunu** oluşturun (kopyasını değil)
+- 🎌 <kbd>❖ Win</kbd> <kbd>R</kbd> tuşlarına basıp `shell:startup` yazıp <kbd>↩ Enter</kbd> 'a
+ basın
+- 🚙 Oluşturduğunzu kısayolu açılan dizine kopyalayın
+
 ## 👨‍💻 Geliştirici Notları
 
-İstersen kod içerisinde en altta bulunan kısayolları değiştirebilirsin
+- 👨‍🔧 Kod içerisinde en altta bulunan kısayolları değiştirebilirsin
 
 ### 🍍 Kısayol Tanımlamaları
 
-| Sembol | Açıklama                                                                                             |
-| ------ | ---------------------------------------------------------------------------------------------------- |
-| #      | Win (Windows logo key)                                                                               |
-| !      | Alt                                                                                                  |
-| ^      | Control                                                                                              |
-| +      | Shift                                                                                                |
-| &      | An ampersand may be used between any two keys or mouse buttons to combine them into a custom hotkey. |
-s
+| Sembol | Açıklama                         |
+| ------ | -------------------------------- |
+| `#`    | Win (Windows logo key)           |
+| `!`    | Alt                              |
+| `^`    | Control                          |
+| `+`    | Shift                            |
+| `&`    | Birden faza kısayolu birleştirme |
+
+### 🔗 Faydalı Bağlantılar
+
+- [👜 Mağaza Uygulamlarını Komutla Açma](https://windows.yemreak.com/gelistirici-notlarim/magaza-uygulamlarini-komutla-acma)
