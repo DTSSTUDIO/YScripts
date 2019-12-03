@@ -1,10 +1,12 @@
 # 👨‍💼 YWinManager
 
-## 👁‍🗨 Önizlemeler
+## 👁‍🗨 Uygulamaya Bakış
+
+![](../res/usage.gif)
 
 ![](../res/tray_bar.png)
 
-![](../res/default.png)
+![](../res/default.png.png)
 
 ![](../res/tray_menu.png)
 
@@ -59,3 +61,4 @@
 | ^      | Control                                                                                              |
 | +      | Shift                                                                                                |
 | &      | An ampersand may be used between any two keys or mouse buttons to combine them into a custom hotkey. |
+s

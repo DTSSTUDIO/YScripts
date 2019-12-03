@@ -137,10 +137,24 @@ KeepActiveWindowInMem() {
     KeepInMem(ahkID, title, iconPath)
 }
 
+AddTrayMenuIcon(title, iconPath, default=True) {
+    if FileExist(iconPath) {
+        Menu, Tray, Icon, %title%, %iconPath%,, 20
+    } else if default {
+        AddTrayMenuIcon(title, ".\res\default.ico", False)
+    }
+}
+
 UpdateMenu(){
     #Persistent
     Menu, Tray, NoStandard
     Menu, Tray, Add, YEmreAk, IconClicked
+    
+    iconPath := ".\res\ylogo.ico"
+    if FileExist(iconPath) {
+        Menu, Tray, Icon, %iconPath%,, 0
+        Menu, Tray, Icon, YEmreAk, %iconPath%,, 20
+    }
     
     global HidedWindows
     if (HidedWindows.Length() > 0) {
@@ -153,20 +167,22 @@ UpdateMenu(){
         
         For index, item in HidedWindows {
             title := item.title
+            iconPath := item.iconPath
+            
             Menu, Tray, Add, %title%, IconClicked
+            AddTrayMenuIcon(title, iconPath)
         }
         
         Menu, Tray, Add, Temizle, ClearAll
+        AddTrayMenuIcon("Temizle", ".\res\clear.ico")
+        
     } else {
-        iconPath := "C:\Users\Yedhrab\Google Drive\Pictures\Icons\Ico\ylogo-dark.ico"
         mainTitle := "YEmreAk"
     }
     
-    if FileExist(iconPath) {
-        Menu, Tray, Icon, %iconPath%, 1
-    }
     Menu, Tray, Default, %mainTitle%
     Menu, Tray, Add, Kapat, CloseApp
+    AddTrayMenuIcon("Kapat", ".\res\close.ico")
 }
 
 SendActiveWindowToTray() {
@@ -276,6 +292,10 @@ return
 return
 
 #c::
+    OpenWindowByTitleInTray("Clockify", "C:\Users\Yedhrab\AppData\Local\Programs\Clockify\Clockify.exe", 2)
+        return
+    
+#x::
     OpenWindowByTitleInTray("Google Calendar", "C:\Users\Yedhrab\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Calendar.lnk", 2)
 return
 
