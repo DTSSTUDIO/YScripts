@@ -279,7 +279,7 @@ return path
 
 ; ---------------------------------- Göster / Gizle ----------------------------------
 #q::
-    name := "Clockify"
+    name := "- OneNote"
     path := "shell:appsFolder\Microsoft.Office.OneNote_8wekyb3d8bbwe!microsoft.onenoteim"
     mode := 2
     OpenWindowByTitle(name, path, mode)
