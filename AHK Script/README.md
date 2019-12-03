@@ -1,4 +1,4 @@
-# 👨‍💼 WinManager
+# 👨‍💼 YWinManager
 
 ## 👁‍🗨 Önizlemeler
 
