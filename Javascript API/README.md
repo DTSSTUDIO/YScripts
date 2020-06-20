@@ -8,5 +8,6 @@
 - [coursera.js](./coursera.js)
 - [gettyImages.js](./gettyImages.js)
 - [youtube_to_md.js](./youtube_to_md.js)
+- [mhrs.js](./mhrs.js)
 
 <!--Index-->
