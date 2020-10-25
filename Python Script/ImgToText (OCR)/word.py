@@ -43,7 +43,3 @@ class Word:
     def __str__(self):
         return "Text: {}\nAuthor: {}\nFont Size: {}\nFont File: {}\nLanguage: {}\nText Position: ({}, {})" \
             .format(self.text, self.author, self.font_size, self.font_file, self.language, self.x, self.y)
-
-
-
-

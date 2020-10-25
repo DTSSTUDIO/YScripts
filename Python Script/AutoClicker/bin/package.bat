@@ -1,0 +1,1 @@
+pyinstaller.exe --onefile --noconsole --icon=app.ico --name AutoClicker main.py
